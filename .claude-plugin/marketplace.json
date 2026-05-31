@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "uxfx-tools",
+  "description": "Plugins by Dale Jones (UXFX). Each one does real work and teaches the thinking behind it.",
+  "owner": {
+    "name": "Dale Jones",
+    "email": "dale@uxfx.io"
+  },
+  "plugins": []
+}
