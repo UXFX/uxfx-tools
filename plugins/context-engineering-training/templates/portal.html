@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Context Engineering Training — Progress Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --gray-950: #0a0a0b;
+  --gray-900: #121214;
+  --gray-850: #18181b;
+  --gray-800: #1f1f23;
+  --gray-700: #27272a;
+  --gray-600: #3f3f46;
+  --gray-500: #52525b;
+  --gray-400: #71717a;
+  --gray-300: #a1a1aa;
+  --gray-200: #d4d4d8;
+  --gray-100: #e4e4e7;
+  --gray-50: #fafafa;
+  --white: #ffffff;
+
+  --brand: #6366f1;
+  --brand-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #0ea5e9;
+  --success-muted: rgba(34, 197, 94, 0.15);
+  --warning-muted: rgba(245, 158, 11, 0.15);
+  --error-muted: rgba(239, 68, 68, 0.15);
+  --info-muted: rgba(14, 165, 233, 0.15);
+
+  --tier-foundation: #6366f1;
+  --tier-builder: #10b981;
+  --tier-architect: #8b5cf6;
+  --ex-throughline: #84cc16;
+  --ex-standalone: #06b6d4;
+  --concept-color: #0ea5e9;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', Consolas, monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+}
+
+/* ============================================================
+   DARK THEME (default)
+   ============================================================ */
+[data-theme="dark"] {
+  --bg-page: #121214;
+  --bg-card: #18181b;
+  --bg-card-hover: #1f1f23;
+  --bg-input: #1f1f23;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --border-subtle: rgba(255,255,255,0.06);
+  --border-default: rgba(255,255,255,0.1);
+  --border-strong: rgba(255,255,255,0.2);
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.5);
+  --timeline-line: rgba(255,255,255,0.08);
+}
+
+/* ============================================================
+   LIGHT THEME
+   ============================================================ */
+[data-theme="light"] {
+  --bg-page: #f8f8fa;
+  --bg-card: #ffffff;
+  --bg-card-hover: #fafafa;
+  --bg-input: #ffffff;
+  --text-primary: #0a0a0b;
+  --text-secondary: #52525b;
+  --text-muted: #71717a;
+  --border-subtle: rgba(0,0,0,0.06);
+  --border-default: rgba(0,0,0,0.1);
+  --border-strong: rgba(0,0,0,0.2);
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.1);
+  --timeline-line: rgba(0,0,0,0.1);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.portal-container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 24px 64px;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.portal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.header-left { display: flex; flex-direction: column; gap: 4px; }
+.header-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.tier-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--white);
+}
+.tier-badge[data-tier="foundation"] { background: var(--tier-foundation); }
+.tier-badge[data-tier="builder"] { background: var(--tier-builder); }
+.tier-badge[data-tier="architect"] { background: var(--tier-architect); }
+
+.header-right { display: flex; align-items: center; gap: 12px; }
+
+.theme-toggle {
+  width: 36px; height: 36px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.theme-toggle:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-strong);
+}
+
+/* ============================================================
+   HERO / WHAT'S NEXT
+   ============================================================ */
+.hero-card {
+  position: relative;
+  padding: 24px;
+  border-radius: var(--radius-xl);
+  background: var(--bg-card);
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+.hero-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-xl);
+  padding: 1.5px;
+  background: var(--brand-gradient);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.hero-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.hero-session-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.hero-session-num {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+.hero-encourage {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ============================================================
+   TIMELINE
+   ============================================================ */
+.timeline-section { margin-bottom: 48px; }
+.timeline-section-title {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  color: var(--text-secondary);
+}
+
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--timeline-line);
+  border-radius: 1px;
+}
+
+/* Tier label */
+.tier-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.tier-label::before {
+  content: '';
+  position: absolute;
+  left: -32px;
+  width: 20px;
+  height: 2px;
+}
+.tier-label[data-tier="foundation"] { color: var(--tier-foundation); }
+.tier-label[data-tier="foundation"]::before { background: var(--tier-foundation); }
+.tier-label[data-tier="builder"] { color: var(--tier-builder); }
+.tier-label[data-tier="builder"]::before { background: var(--tier-builder); }
+.tier-label[data-tier="architect"] { color: var(--tier-architect); }
+.tier-label[data-tier="architect"]::before { background: var(--tier-architect); }
+
+/* Session node */
+.session-node {
+  position: relative;
+  margin-bottom: 8px;
+}
+.session-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+  cursor: pointer;
+}
+.session-header:hover { background: var(--bg-card-hover); }
+
+.session-dot {
+  position: absolute;
+  left: -32px;
+  top: 14px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  flex-shrink: 0;
+  z-index: 1;
+  background: var(--bg-page);
+  border: 2px solid var(--timeline-line);
+  color: var(--text-muted);
+  transition: all var(--transition-base);
+}
+.session-node[data-status="completed"] .session-dot {
+  border-color: var(--success);
+  background: var(--success);
+  color: var(--white);
+}
+.session-node[data-status="in-progress"] .session-dot {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: var(--white);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+.session-node[data-status="not-started"] .session-dot {
+  border-color: var(--text-muted);
+  color: var(--text-muted);
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(99, 102, 241, 0); }
+}
+
+.session-title-text {
+  font-size: 15px;
+  font-weight: 500;
+  flex: 1;
+}
+.session-node[data-status="not-started"] .session-title-text { opacity: 0.7; }
+
+.session-num {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.session-icon {
+  font-size: 13px;
+  color: var(--text-muted);
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.session-node[data-status="completed"] .session-icon { color: var(--success); }
+
+.session-expand-arrow {
+  font-size: 11px;
+  color: var(--text-muted);
+  transition: transform var(--transition-fast);
+  width: 16px;
+  text-align: center;
+}
+.session-node.expanded .session-expand-arrow { transform: rotate(90deg); }
+
+/* Exercise list */
+.exercise-list { list-style: none; }
+.exercise-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 13px;
+}
+.exercise-status {
+  width: 16px;
+  text-align: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.exercise-status.done { color: var(--success); }
+.exercise-status.skipped { color: var(--warning); }
+.exercise-status.not-done { color: var(--text-muted); }
+.exercise-type {
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.exercise-type.throughline { background: rgba(132, 204, 22, 0.15); color: var(--ex-throughline); }
+.exercise-type.standalone { background: rgba(6, 182, 212, 0.15); color: var(--ex-standalone); }
+
+.workflow-note {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 4px 0;
+}
+
+/* ============================================================
+   TIER FILTER TABS
+   ============================================================ */
+.tier-filters {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.tier-filter-btn {
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-default);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.tier-filter-btn:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+.tier-filter-btn.active {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--white);
+}
+.tier-filter-btn.active[data-filter="foundation"] { background: var(--tier-foundation); border-color: var(--tier-foundation); }
+.tier-filter-btn.active[data-filter="builder"] { background: var(--tier-builder); border-color: var(--tier-builder); }
+.tier-filter-btn.active[data-filter="architect"] { background: var(--tier-architect); border-color: var(--tier-architect); }
+
+/* ============================================================
+   QUICK REFERENCE
+   ============================================================ */
+.quick-ref { margin-bottom: 48px; }
+.section-heading {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+.search-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--transition-fast);
+  margin-bottom: 16px;
+}
+.search-input::placeholder { color: var(--text-muted); }
+.search-input:focus { border-color: var(--brand); }
+
+.concept-list { list-style: none; }
+.concept-entry {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 14px;
+}
+.concept-entry:last-child { border-bottom: none; }
+.concept-name-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(14, 165, 233, 0.15);
+  color: var(--concept-color);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.concept-desc {
+  color: var(--text-secondary);
+  font-size: 13px;
+  flex: 1;
+}
+.concept-session-num {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+.no-concepts {
+  color: var(--text-muted);
+  font-size: 14px;
+  padding: 16px 0;
+  text-align: center;
+}
+
+/* ============================================================
+   CLAUDE STACK
+   ============================================================ */
+.stack-section { margin-bottom: 48px; }
+.stack-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 600;
+  padding: 0;
+  letter-spacing: -0.01em;
+}
+.stack-toggle-arrow {
+  font-size: 12px;
+  color: var(--text-muted);
+  transition: transform var(--transition-fast);
+}
+.stack-section.expanded .stack-toggle-arrow { transform: rotate(90deg); }
+.stack-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-slow);
+}
+.stack-body-inner { padding: 16px 0; }
+.stack-layer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.stack-connector {
+  color: var(--text-muted);
+  min-width: 36px;
+  text-align: right;
+}
+.stack-name { color: var(--text-primary); }
+.stack-name.unlocked { font-weight: 500; }
+.stack-name.locked { color: var(--text-muted); opacity: 0.45; }
+.stack-session-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  background: var(--border-subtle);
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+.stack-layer {
+  border-radius: var(--radius-sm);
+  padding: 3px 4px;
+  margin: 0 -4px;
+  transition: background var(--transition-fast);
+}
+.stack-layer:hover {
+  background: var(--bg-card-hover);
+}
+.stack-layer .stack-session-badge.on-hover {
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+.stack-layer:hover .stack-session-badge.on-hover {
+  opacity: 1;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.portal-footer {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  padding-top: 32px;
+  border-top: 1px solid var(--border-subtle);
+}
+.meta-note {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: left;
+  line-height: 1.55;
+}
+
+/* ============================================================
+   GLOBAL PROGRESS BAR
+   ============================================================ */
+.global-progress {
+  margin-top: 12px;
+  margin-bottom: 32px;
+}
+.global-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.global-progress-track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border-subtle);
+  overflow: hidden;
+}
+.global-progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--brand-gradient);
+  transition: width var(--transition-slow);
+  min-width: 0;
+}
+
+/* ============================================================
+   SESSION MODAL
+   ============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+  padding: 24px;
+}
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-content {
+  width: 100%;
+  max-width: 560px;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: 0;
+  transform: translateY(12px) scale(0.98);
+  transition: transform var(--transition-base);
+}
+.modal-overlay.active .modal-content {
+  transform: translateY(0) scale(1);
+}
+.modal-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 24px 24px 16px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.modal-header-left { flex: 1; }
+.modal-session-num {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.modal-session-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.modal-tier-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--white);
+}
+.modal-tier-badge[data-tier="foundation"] { background: var(--tier-foundation); }
+.modal-tier-badge[data-tier="builder"] { background: var(--tier-builder); }
+.modal-tier-badge[data-tier="architect"] { background: var(--tier-architect); }
+.modal-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 12px;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.modal-close:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+.modal-body { padding: 20px 24px 24px; }
+
+/* Per-session progress bar in modal */
+.modal-progress { margin-bottom: 20px; }
+.modal-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+.modal-progress-track {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--border-subtle);
+  overflow: hidden;
+}
+.modal-progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width var(--transition-slow);
+}
+.modal-progress-fill[data-tier="foundation"] { background: var(--tier-foundation); }
+.modal-progress-fill[data-tier="builder"] { background: var(--tier-builder); }
+.modal-progress-fill[data-tier="architect"] { background: var(--tier-architect); }
+
+/* Modal sections */
+.modal-section { margin-bottom: 20px; }
+.modal-section:last-child { margin-bottom: 0; }
+.modal-section-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.modal-big-idea {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+.modal-remember {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  padding: 12px 14px;
+  background: var(--bg-card-hover);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--brand);
+}
+
+/* Modal exercise list */
+.modal-exercise-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.modal-exercise-item:last-child { border-bottom: none; }
+.modal-exercise-status {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.modal-exercise-status.done { background: var(--success-muted); color: var(--success); }
+.modal-exercise-status.skipped { background: var(--warning-muted); color: var(--warning); }
+.modal-exercise-status.not-done { background: var(--border-subtle); color: var(--text-muted); }
+.modal-exercise-info { flex: 1; }
+.modal-exercise-name {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.modal-exercise-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Modal concept list */
+.modal-concept-item {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.modal-concept-item:last-child { border-bottom: none; }
+.modal-concept-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--concept-color);
+  margin-bottom: 2px;
+}
+.modal-concept-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Modal status badge */
+.modal-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.modal-status-badge.completed { background: var(--success-muted); color: var(--success); }
+.modal-status-badge.in-progress { background: rgba(99,102,241,0.15); color: var(--brand); }
+.modal-status-badge.not-started { background: var(--border-subtle); color: var(--text-muted); }
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .portal-container { padding: 24px 16px 48px; }
+  .portal-header { flex-direction: column; align-items: flex-start; }
+  .header-right { align-self: flex-end; margin-top: -32px; }
+  .hero-session-title { font-size: 19px; }
+  .search-input { font-size: 16px; } /* prevent iOS zoom */
+  .concept-entry { flex-wrap: wrap; gap: 4px; }
+  .concept-session-num { margin-left: auto; }
+  .modal-overlay { padding: 12px; }
+  .modal-content { max-height: 85vh; }
+  .modal-header { padding: 16px 16px 12px; }
+  .modal-body { padding: 16px; }
+  .modal-session-title { font-size: 18px; }
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+@media print {
+  [data-theme] {
+    --bg-page: #ffffff;
+    --bg-card: #ffffff;
+    --text-primary: #0a0a0b;
+    --text-secondary: #52525b;
+    --text-muted: #71717a;
+    --border-subtle: rgba(0,0,0,0.1);
+    --border-default: rgba(0,0,0,0.15);
+    --timeline-line: rgba(0,0,0,0.15);
+    --shadow-card: none;
+    --shadow-lg: none;
+  }
+  .theme-toggle { display: none !important; }
+  .modal-overlay { display: none !important; }
+  .stack-body { max-height: none !important; }
+  .stack-toggle-arrow { display: none !important; }
+  body { font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="portal-container" id="portal">
+  <!-- Rendered by JS -->
+</div>
+
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+const TRAINING_DATA = /* %%DATA_PLACEHOLDER%% */ {
+  student: { name: "", started: "" },
+  lastUpdated: "",
+  sessions: [
+    { id: 0, title: "Getting Set Up", tier: "foundation", status: "not-started", exercisesDone: 0, exercisesTotal: 0 },
+    { id: 1, title: "How to Think About AI", tier: "foundation", status: "not-started", exercisesDone: 0, exercisesTotal: 2 },
+    { id: 2, title: "How Claude Actually Works", tier: "foundation", status: "not-started", exercisesDone: 0, exercisesTotal: 4 },
+    { id: 3, title: "Projects & Context Architecture", tier: "foundation", status: "not-started", exercisesDone: 0, exercisesTotal: 4 },
+    { id: 4, title: "Session Management & Handoff", tier: "builder", status: "not-started", exercisesDone: 0, exercisesTotal: 4 },
+    { id: 5, title: "Cowork Mode", tier: "builder", status: "not-started", exercisesDone: 0, exercisesTotal: 3 },
+    { id: 6, title: "Connected Tools & Automation", tier: "builder", status: "not-started", exercisesDone: 0, exercisesTotal: 4 },
+    { id: 7, title: "Building Skills", tier: "architect", status: "not-started", exercisesDone: 0, exercisesTotal: 4 },
+    { id: 8, title: "Skill Orchestration & Plugins", tier: "architect", status: "not-started", exercisesDone: 0, exercisesTotal: 4 },
+    { id: 9, title: "Designing Your System", tier: "architect", status: "not-started", exercisesDone: 0, exercisesTotal: 4 }
+  ],
+  workflow: { description: "", builtSoFar: [] },
+  exercises: {
+    1: [
+      { name: "The Bad Prompt / Good Prompt Comparison", type: "standalone", status: "not-done" },
+      { name: "Think First, Then Produce", type: "standalone", status: "not-done" }
+    ],
+    2: [
+      { name: "Choose Your Workflow", type: "throughline", status: "not-done" },
+      { name: "The Personalization Stack in Action", type: "standalone", status: "not-done" },
+      { name: "Memory Observation", type: "standalone", status: "not-done" },
+      { name: "Model Selection & Extended Thinking", type: "throughline", status: "not-done" }
+    ],
+    3: [
+      { name: "Design Your Workflow's Project", type: "throughline", status: "not-done" },
+      { name: "The A/B Comparison — Simulated", type: "throughline", status: "not-done" },
+      { name: "The Context Overload Experiment", type: "standalone", status: "not-done" },
+      { name: "Your Workflow as a Thinking Partner", type: "throughline", status: "not-done" }
+    ],
+    4: [
+      { name: "Write Your Workflow's First Handoff File", type: "throughline", status: "not-done" },
+      { name: "Write a Transition Prompt", type: "throughline", status: "not-done" },
+      { name: "The Context Overload Breakpoint", type: "standalone", status: "not-done" },
+      { name: "Design Your Workflow's Two-Layer System", type: "throughline", status: "not-done" }
+    ],
+    5: [
+      { name: "Move Your Workflow Into Cowork", type: "throughline", status: "not-done" },
+      { name: "Produce a Real Deliverable", type: "throughline", status: "not-done" },
+      { name: "Break It on Purpose", type: "standalone", status: "not-done" }
+    ],
+    6: [
+      { name: "Connect a Tool to Your Workflow", type: "throughline", status: "not-done" },
+      { name: "Install and Use a Plugin", type: "standalone", status: "not-done" },
+      { name: "Automate a Step of Your Workflow", type: "throughline", status: "not-done" },
+      { name: "Design a Batch Workflow", type: "standalone", status: "not-done" }
+    ],
+    7: [
+      { name: "Extract Your Workflow's Hidden Expertise", type: "throughline", status: "not-done" },
+      { name: "Create Your Workflow's Skill", type: "throughline", status: "not-done" },
+      { name: "Test and Refine the Skill", type: "throughline", status: "not-done" },
+      { name: "The Handoff Test", type: "standalone", status: "not-done" }
+    ],
+    8: [
+      { name: "Decompose Your Workflow Into Phases", type: "throughline", status: "not-done" },
+      { name: "Build Your State File and Orchestrator", type: "throughline", status: "not-done" },
+      { name: "Build a Review Pipeline", type: "throughline", status: "not-done" },
+      { name: "The Orchestration Stress Test", type: "standalone", status: "not-done" }
+    ],
+    9: [
+      { name: "Audit Your Workflow System", type: "throughline", status: "not-done" },
+      { name: "The Full-Stack Run", type: "throughline", status: "not-done" },
+      { name: "Design Your Second Workstream", type: "throughline", status: "not-done" },
+      { name: "The Handoff Test — Full System", type: "standalone", status: "not-done" }
+    ]
+  },
+  concepts: {
+    1: [
+      { name: "The mental model shift", desc: "Stop asking questions, start giving context. AI is a thinking partner, not a search engine." },
+      { name: "What AI is good at (and bad at)", desc: "Good at drafting, brainstorming, restructuring. Bad at knowing your situation or verifying itself." },
+      { name: "Prompt anatomy", desc: "Four parts: Role, Task, Context, Constraints. Your diagnostic checklist when output disappoints." },
+      { name: "Separate thinking from execution", desc: "Think first, produce second. Catch bad assumptions before they become bad output." }
+    ],
+    2: [
+      { name: "Context window", desc: "Your finite resource. Everything loaded has a cost." },
+      { name: "Personalization stack", desc: "Five layers shape behavior: preferences, instructions, styles, memory, conversation." },
+      { name: "Memory", desc: "Useful for continuity, unreliable for precision. Use files for project state." },
+      { name: "Research", desc: "Claude’s training data is frozen. Anything current needs research first." },
+      { name: "Model selection", desc: "Match reasoning power to task complexity. Start default, switch up or down." },
+      { name: "Extended thinking", desc: "Encourages Claude to reason before responding. Pair with stronger models." },
+      { name: "Conversation as unit", desc: "Quality comes from the conversation, not the prompt." }
+    ],
+    3: [
+      { name: "One Project per workstream", desc: "Don’t overload a single Project with everything." },
+      { name: "Project instructions", desc: "Your standing brief. Set context once." },
+      { name: "Project knowledge", desc: "Two approaches: UI uploads (stable) or file system (evolving)." },
+      { name: "Styles", desc: "Voice and tone control. Format, not substance." },
+      { name: "Context budgeting", desc: "Load only what this conversation needs. High-signal beats high-volume." }
+    ],
+    4: [
+      { name: "Session endings", desc: "Context full, topic drifting, or natural breakpoint. Recognize which." },
+      { name: "Handoff file", desc: "The connective tissue between sessions. No file, no continuity." },
+      { name: "Transition prompts", desc: "Bootstrap fresh conversations: CONTEXT, WHAT JUST HAPPENED, TASK, GUARDRAILS." },
+      { name: "Two-layer system", desc: "Lean master checklist + focused session kickoffs." },
+      { name: "Guardrails", desc: "Explicit scope boundaries prevent Claude from going off-script." }
+    ],
+    5: [
+      { name: "Cowork mode", desc: "File access + code execution + sub-agents + document creation." },
+      { name: "Approval modes", desc: "’Ask before acting’ for learning, ‘Act without asking’ for speed." },
+      { name: "Artifacts", desc: "Standalone deliverables in a dedicated panel." },
+      { name: "Sub-agents", desc: "Parallel work with isolated context. A context management technique." },
+      { name: "Research in Cowork", desc: "Search, save to file, review, then produce. Explicit step." },
+      { name: "Error recovery", desc: "Three modes: context exhaustion, tool failures, scope drift." }
+    ],
+    6: [
+      { name: "Connectors", desc: "Extend Claude to external services via MCP." },
+      { name: "Plugins", desc: "Bundled capabilities. Evaluate before installing." },
+      { name: "Scheduled tasks", desc: "Recurring automation. Requires app open." },
+      { name: "Claude in Chrome", desc: "Browser extension fallback when connectors don’t exist." },
+      { name: "Batch processing", desc: "Size batches to context window. Script mechanical, review judgment." }
+    ],
+    7: [
+      { name: "Skills", desc: "Encode expertise, not just instructions. Define HOW to think." },
+      { name: "Decision framework", desc: "Chat → Project → Skill → Plugin. Match investment to usage." },
+      { name: "Creating skills through conversation", desc: "Turn into skill: Claude builds your SKILL.md through conversation. 80% path." },
+      { name: "SKILL.md anatomy", desc: "Role, process stages, quality gates, constraints, triggers. The deeper 20%." },
+      { name: "CLAUDE.md", desc: "Project-level config in the file system. Travels with the project." }
+    ],
+    8: [
+      { name: "One skill per phase", desc: "Split workflows by type of thinking." },
+      { name: "State file", desc: "Shared clipboard between skills. Plain markdown." },
+      { name: "Gates", desc: "Preconditions preventing shortcuts. Without them, Claude skips steps." },
+      { name: "Orchestrator", desc: "Reference map, not a program. Describes the flow." },
+      { name: "Plugin building", desc: "Package multi-skill systems. Build reliably first." },
+      { name: "Review pipelines", desc: "Separate creation from critique using sub-agents." }
+    ],
+    9: [
+      { name: "The Claude Stack", desc: "All layers, all levels. Right information at the right level." },
+      { name: "Design for others", desc: "Clear instructions, intuitive structure. Members vs. Editors." },
+      { name: "Start with one workflow", desc: "Full stack for one, then expand." },
+      { name: "Maintain your system", desc: "Stale instructions and outdated skills degrade quality." }
+    ]
+  },
+  sessionContent: {
+    0: {
+      bigIdea: "Get Claude Desktop configured so everything in Sessions 1–9 works. No teaching — just setup and verification.",
+      whatToRemember: "Profile preferences, training Project created, Cowork tab visible, folder mountable, models switchable."
+    },
+    1: {
+      bigIdea: "Most people treat AI like a search engine. The real shift: stop asking questions, start giving context. Claude is a thinking partner — the quality of what you get back depends entirely on how well you brief it.",
+      whatToRemember: "Context over cleverness. AI is a thinking partner, not a search engine. Evaluate before you trust. Prompt anatomy (Role, Task, Context, Constraints) is your diagnostic checklist. Separate thinking from execution — think first, produce second.",
+      exerciseDescriptions: {
+        "The Bad Prompt / Good Prompt Comparison": "Write a bare, context-free prompt for a real work task. Then rewrite it using all four parts of prompt anatomy. Compare outputs and identify which part made the biggest difference.",
+        "Think First, Then Produce": "Pick a complex task. Instead of asking Claude to produce it directly, use the two-stage pattern: think through the approach first, align on the thinking, then produce. Compare to a single-shot prompt."
+      }
+    },
+    2: {
+      bigIdea: "Session 1 gave you the mental models. Now meet the machine. Claude is a reasoning partner with a finite context window. Everything — output quality, session length, what Claude 'knows' about you — comes down to what's in that window and how well you manage it. This is context engineering.",
+      whatToRemember: "The context window is finite — everything loaded has a cost. Profile preferences, project instructions, styles, memory, and conversation are layers that shape output. Claude's training data is frozen — research first, then produce. Model selection is a context engineering decision. Memory is useful for continuity but unreliable for precision. The conversation — not the prompt — is where quality happens.",
+      exerciseDescriptions: {
+        "Choose Your Workflow": "Pick the workflow you'll build across the entire training. Write a plain-language description, then compare a bare prompt vs. a context-rich prompt for one step.",
+        "The Personalization Stack in Action": "Test the same prompt in three contexts: bare conversation, inside a Project, and with a style applied. Then refine your profile preferences.",
+        "Memory Observation": "Tell Claude specific things, end the session, test what it remembers in a new session vs. an incognito chat. Map the boundaries.",
+        "Model Selection & Extended Thinking": "Run your workflow's most complex step three ways: faster model, stronger model, stronger model + extended thinking. Compare reasoning depth."
+      }
+    },
+    3: {
+      bigIdea: "Session 1 gave you the mental models. Session 2 taught you the layers. This session teaches you to architect them. Projects are persistent workspaces where context compounds. The skill is knowing what goes where, how much to load, and what to leave out.",
+      whatToRemember: "One Project per workstream. Project instructions are your standing brief — set context once. Context budgeting is the core skill: load what's needed, leave out what isn't. Start lean and add context when output quality tells you something is missing.",
+      exerciseDescriptions: {
+        "Design Your Workflow's Project": "Design a Project for your workflow inside this training session: name, instructions (300-500 tokens), knowledge approach. Save to a file, set up after the session.",
+        "The A/B Comparison — Simulated": "Run a workflow step bare, then prepend your project instructions and run it again. Compare outputs and trace the quality difference to specific instructions.",
+        "The Context Overload Experiment": "Deliberately overload a Project with verbose instructions and large files. Push until quality degrades, then strip back to essentials.",
+        "Your Workflow as a Thinking Partner": "Have Claude challenge your workflow process: steps to combine, quality checks you're skipping, what would break if someone else ran it."
+      }
+    },
+    4: {
+      bigIdea: "A single conversation is not the unit of work — a project is. Projects span days and weeks. The skill that separates one-off users from sustained productivity is handoff discipline: maintaining continuity across sessions.",
+      whatToRemember: "The handoff file is the connective tissue between sessions. Transition prompts bootstrap fresh conversations with full context. The two-layer system prevents context overload in long-running projects. Guardrails prevent scope leakage. Use files for project state, not memory.",
+      exerciseDescriptions: {
+        "Write Your Workflow's First Handoff File": "Write a SESSION-HANDOFF.md capturing current state: what you've built, decisions made, what's next. Keep it under 40 lines.",
+        "Write a Transition Prompt": "Using the handoff file, write a transition prompt with CONTEXT, WHAT JUST HAPPENED, TASK, GUARDRAILS. Test it in a fresh conversation.",
+        "The Context Overload Breakpoint": "Keep working without handing off until quality degrades. Note when it happened and what was loaded. Build intuition for when to hand off.",
+        "Design Your Workflow's Two-Layer System": "Design a master checklist (under 60 lines) tracking overall build status, plus a kickoff prompt scoped to Session 5's work."
+      }
+    },
+    5: {
+      bigIdea: "Cowork mode turns Claude from a chat partner into an agent that works with your files and your computer. The shift: from 'I chat with Claude and copy-paste results' to 'Claude works alongside me in my actual environment.'",
+      whatToRemember: "Cowork is file access + code execution + sub-agents + document creation. Start with 'Ask before acting' until you trust the workflow. Sub-agents are a context management technique. Research in Cowork is an explicit step. Three failure modes: context exhaustion, tool failures, scope drift.",
+      exerciseDescriptions: {
+        "Move Your Workflow Into Cowork": "Mount your workspace folder, have Claude read the handoff file, then run a workflow step entirely in Cowork — reading inputs and writing outputs to the file system.",
+        "Produce a Real Deliverable": "Have Claude produce an actual output from your workflow — a Word doc, spreadsheet, or report you'd actually use. Open it on your computer.",
+        "Break It on Purpose": "Deliberately trigger failures: wrong folder, contradictory instructions, or a long session until quality degrades. Diagnose whether it's permission, context, or scope."
+      }
+    },
+    6: {
+      bigIdea: "This session extends Claude's reach to external services and recurring workflows. Connectors, plugins, and scheduled tasks shift the model from 'Claude works with my files' to 'Claude works across my entire toolchain.'",
+      whatToRemember: "Connectors use MCP under the hood — knowing this helps troubleshooting. Plugins bundle capabilities — evaluate before installing. Scheduled tasks automate recurring work but require the app open. Size batches to the context window.",
+      exerciseDescriptions: {
+        "Connect a Tool to Your Workflow": "Identify an external service your workflow touches. Connect it and have Claude pull real data in or push a deliverable out.",
+        "Install and Use a Plugin": "Browse plugins, install one relevant to your work, use it in a Cowork session. Evaluate whether it saved time.",
+        "Automate a Step of Your Workflow": "Create a scheduled task for a recurring workflow step. Let it run for a few days and evaluate output quality.",
+        "Design a Batch Workflow": "Pick files needing the same operation. Design scope, batch size, mechanical vs. judgment split. Run the first batch with approval mode."
+      }
+    },
+    7: {
+      bigIdea: "The skills and plugins you used in Sessions 5–6 were built by someone. Now you learn to build your own — packaging expertise into executable specifications. The shift: from consumer to creator.",
+      whatToRemember: "Skills encode expertise, not just instructions — they define HOW to think. The decision framework (Chat → Project → Skill → Plugin) helps invest at the right level. 'Turn into skill' gets you 80% through conversation. Good skills have named stages, quality gates, and behavioral constraints. CLAUDE.md is project-level config in the file system. The handoff test is the real quality bar.",
+      exerciseDescriptions: {
+        "Extract Your Workflow's Hidden Expertise": "Write out the expert methodology: rules, quality criteria, mistakes to avoid, judgment calls that can't be automated.",
+        "Create Your Workflow's Skill": "Two paths: use 'Turn into skill' from the chat dropdown (recommended first), or write the SKILL.md manually. Review and refine either way.",
+        "Test and Refine the Skill": "Load your skill in Cowork with real input. Evaluate whether Claude followed stages and hit quality gates. Refine and retest.",
+        "The Handoff Test": "Give your skill to someone who didn't build it. Watch where they get confused. Their confusion points are your design failures."
+      }
+    },
+    8: {
+      bigIdea: "Real workflows are rarely one skill's job. The power move is designing skills that hand off to each other, coordinated through shared state, so Claude can run a multi-step process that spans sessions.",
+      whatToRemember: "One skill per phase — split by type of thinking. The state file is the shared clipboard between skills. Gates prevent Claude from skipping steps. The orchestrator is a reference map, not a program. Plugins package multi-skill systems. Review pipelines separate creation from critique.",
+      exerciseDescriptions: {
+        "Decompose Your Workflow Into Phases": "Identify 2-3 natural phases in your workflow that require different thinking. Write each phase as its own skill.",
+        "Build Your State File and Orchestrator": "Create a STATE.md tracking skill status and a simple orchestrator mapping skill order, outputs, and gates. Test the handoff.",
+        "Build a Review Pipeline": "Add a review skill that evaluates the final deliverable against quality criteria. Run it as a sub-agent for independent review.",
+        "The Orchestration Stress Test": "Skip a gate — run synthesis before research completes. Compare output with the correct, gated sequence."
+      }
+    },
+    9: {
+      bigIdea: "You have all the building blocks. This session zooms out — how all pieces connect across your entire work, not just one workflow. Context engineering at the system level.",
+      whatToRemember: "Systems beat individual prompts. Put the right information at the right level of the stack. Design for teammates who didn't build it. Start with one workstream end-to-end. Maintain your system — stale instructions degrade quality. The best systems feel invisible.",
+      exerciseDescriptions: {
+        "Audit Your Workflow System": "Take stock of everything built across Sessions 1-8. Find the weakest link — the part most likely to break. Fix it.",
+        "The Full-Stack Run": "Run your complete workflow end-to-end using everything: Project, skill, connected tools, knowledge files, deliverable output, handoff update.",
+        "Design Your Second Workstream": "Architect a second workflow on paper: Project, skills, connectors, handoff protocol, scheduled tasks, directory structure.",
+        "The Handoff Test — Full System": "Give the whole system to someone: Project, directory, handoff file, skill, connected tools. Can they produce useful output without asking you?"
+      }
+    }
+  },
+  stackLayers: [
+    { name: "Profile Preferences", session: 0, indent: 0, connector: "" },
+    { name: "Projects", session: 3, indent: 1, connector: "└──" },
+    { name: "Project Instructions", session: 3, indent: 2, connector: "├──" },
+    { name: "CLAUDE.md", session: 7, indent: 2, connector: "├──" },
+    { name: "Project Knowledge", session: 3, indent: 2, connector: "├──" },
+    { name: "Styles", session: 3, indent: 2, connector: "├──" },
+    { name: "Skills", session: 7, indent: 2, connector: "├──" },
+    { name: "Skill Orchestration", session: 8, indent: 2, connector: "├──" },
+    { name: "Plugins", session: 8, indent: 2, connector: "├──" },
+    { name: "Connectors", session: 6, indent: 2, connector: "├──" },
+    { name: "Scheduled Tasks", session: 6, indent: 2, connector: "├──" },
+    { name: "Conversations", session: 2, indent: 2, connector: "└──" },
+    { name: "Memory", session: 2, indent: 3, connector: "├──" },
+    { name: "Handoff Files", session: 4, indent: 3, connector: "├──" },
+    { name: "Transition Prompts", session: 4, indent: 3, connector: "├──" },
+    { name: "Sub-Agents", session: 5, indent: 3, connector: "├──" },
+    { name: "Artifacts", session: 5, indent: 3, connector: "└──" }
+  ]
+};
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+const D = TRAINING_DATA;
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+function tierLabel(t) {
+  return { foundation: 'Foundation', builder: 'Builder', architect: 'Architect' }[t] || t;
+}
+function tierNum(t) {
+  return { foundation: 1, builder: 2, architect: 3 }[t] || 0;
+}
+
+function currentTier() {
+  let highest = 'foundation';
+  for (const s of D.sessions) {
+    if (s.status === 'completed' || s.status === 'in-progress') {
+      if (tierNum(s.tier) > tierNum(highest)) highest = s.tier;
+    }
+  }
+  return highest;
+}
+
+function completedCount() {
+  return D.sessions.filter(s => s.status === 'completed').length;
+}
+
+function currentSession() {
+  return D.sessions.find(s => s.status === 'in-progress');
+}
+
+function nextSession() {
+  const cur = currentSession();
+  if (cur) return cur;
+  const first = D.sessions.find(s => s.status === 'not-started');
+  return first || null;
+}
+
+function highestCompleted() {
+  let h = -1;
+  for (const s of D.sessions) {
+    if (s.status === 'completed' && s.id > h) h = s.id;
+  }
+  return h;
+}
+
+function esc(str) {
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+function render() {
+  const portal = $('#portal');
+  const cc = completedCount();
+  const ns = nextSession();
+  const ct = currentTier();
+
+  let html = '';
+
+  /* -- HEADER -- */
+  const studentName = D.student.name || 'Student';
+  const progressText = cc > 0 ? `Session ${cc} of ${D.sessions.length}` : 'Not started yet';
+  html += `
+  <header class="portal-header">
+    <div class="header-left">
+      <div class="header-title">Context Engineering Training</div>
+      <div class="header-meta">
+        <span>${esc(studentName)}</span>
+        <span>·</span>
+        <span>${progressText}</span>
+        ${cc > 0 ? `<span class="tier-badge" data-tier="${ct}">Tier ${tierNum(ct)}: ${tierLabel(ct)}</span>` : ''}
+      </div>
+    </div>
+    <div class="header-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark theme">
+        <span id="themeIcon">☾</span>
+      </button>
+    </div>
+  </header>`;
+
+  /* -- GLOBAL PROGRESS BAR -- */
+  const totalExercises = D.sessions.reduce((sum, s) => sum + s.exercisesTotal, 0);
+  const doneExercises = D.sessions.reduce((sum, s) => sum + s.exercisesDone, 0);
+  const sessionsDone = cc;
+  const totalSessions = D.sessions.length;
+  const overallPct = totalSessions > 0 ? Math.round((sessionsDone / totalSessions) * 100) : 0;
+  const exercisePct = totalExercises > 0 ? Math.round((doneExercises / totalExercises) * 100) : 0;
+  html += `
+  <div class="global-progress">
+    <div class="global-progress-label">
+      <span>${sessionsDone} of ${totalSessions} sessions complete</span>
+      <span>${doneExercises}/${totalExercises} exercises</span>
+    </div>
+    <div class="global-progress-track">
+      <div class="global-progress-fill" style="width: ${overallPct}%"></div>
+    </div>
+  </div>`;
+
+  /* -- HERO / WHAT'S NEXT -- */
+  if (ns) {
+    const isInProgress = ns.status === 'in-progress';
+    const label = isInProgress ? 'Continue where you left off' : (cc === 0 ? 'Welcome — start here' : 'Up next');
+    const encourage = isInProgress
+      ? `${ns.exercisesDone} of ${ns.exercisesTotal} exercises done — keep going.`
+      : (cc === 0 ? 'Your context engineering journey begins with getting set up.' : 'Ready when you are.');
+    html += `
+    <div class="hero-card">
+      <div class="hero-label">${label}</div>
+      <div class="hero-session-title">Session ${ns.id}: ${esc(ns.title)}</div>
+      <div class="hero-session-num">Tier ${tierNum(ns.tier)}: ${tierLabel(ns.tier)}</div>
+      <div class="hero-encourage">${encourage}</div>
+    </div>`;
+  } else {
+    html += `
+    <div class="hero-card">
+      <div class="hero-label">Congratulations</div>
+      <div class="hero-session-title">All sessions complete</div>
+      <div class="hero-encourage">You've built the full Claude Stack. Use the reference below to stay sharp.</div>
+    </div>`;
+  }
+
+  /* -- TIMELINE -- */
+  html += `<div class="timeline-section"><div class="timeline-section-title">Session Journey</div>`;
+  html += `<div class="tier-filters">
+    <button class="tier-filter-btn active" data-filter="all">All</button>
+    <button class="tier-filter-btn" data-filter="foundation">Foundation</button>
+    <button class="tier-filter-btn" data-filter="builder">Builder</button>
+    <button class="tier-filter-btn" data-filter="architect">Architect</button>
+  </div>`;
+  html += `<div class="timeline">`;
+
+  let prevTier = null;
+  for (const s of D.sessions) {
+    // Tier label
+    if (s.tier !== prevTier) {
+      html += `<div class="tier-label" data-tier="${s.tier}">Tier ${tierNum(s.tier)}: ${tierLabel(s.tier)}</div>`;
+      prevTier = s.tier;
+    }
+
+    html += `<div class="session-node" data-status="${s.status}" data-session-id="${s.id}">`;
+    html += `<div class="session-dot">${s.status === 'completed' ? '✓' : ''}</div>`;
+    html += `<div class="session-header" tabindex="0" role="button">`;
+    html += `<span class="session-num">S${s.id}</span>`;
+    html += `<span class="session-title-text">${esc(s.title)}</span>`;
+    if (s.status === 'in-progress' && s.exercisesTotal > 0) {
+      html += `<span class="session-num">${s.exercisesDone}/${s.exercisesTotal}</span>`;
+    }
+    html += `<span class="session-expand-arrow">›</span>`;
+    html += `</div>`;
+    html += `</div>`;
+  }
+
+  html += `</div></div>`; // timeline, timeline-section
+
+  /* -- QUICK REFERENCE -- */
+  const allConcepts = [];
+  for (const s of D.sessions) {
+    if (s.status === 'completed' || s.status === 'in-progress') {
+      const cs = D.concepts[s.id];
+      if (cs) {
+        for (const c of cs) {
+          allConcepts.push({ ...c, session: s.id });
+        }
+      }
+    }
+  }
+
+  if (allConcepts.length > 0) {
+    html += `<div class="quick-ref">
+      <div class="section-heading">Quick Reference</div>
+      <input type="text" class="search-input" id="conceptSearch" placeholder="Search concepts…" autocomplete="off">
+      <ul class="concept-list" id="conceptList">`;
+    for (const c of allConcepts) {
+      html += `<li class="concept-entry" data-search="${esc(c.name.toLowerCase())} ${esc(c.desc.toLowerCase())}">
+        <span class="concept-name-tag">${esc(c.name)}</span>
+        <span class="concept-desc">${esc(c.desc)}</span>
+        <span class="concept-session-num">S${c.session}</span>
+      </li>`;
+    }
+    html += `</ul></div>`;
+  }
+
+  /* -- CLAUDE STACK -- */
+  if (cc > 0) {
+    const hc = highestCompleted();
+    html += `<div class="stack-section" id="stackSection">
+      <button class="stack-toggle" id="stackToggle">
+        <span class="stack-toggle-arrow">▶</span>
+        The Claude Stack
+      </button>
+      <div class="stack-body"><div class="stack-body-inner">`;
+    for (const layer of D.stackLayers) {
+      const unlocked = layer.session <= hc || D.sessions.find(s => s.id === layer.session && (s.status === 'completed' || s.status === 'in-progress'));
+      const indent = layer.indent * 20;
+      const cls = unlocked ? 'unlocked' : 'locked';
+      const badge = unlocked
+        ? `<span class="stack-session-badge on-hover">S${layer.session}</span>`
+        : `<span class="stack-session-badge">S${layer.session}</span>`;
+      html += `<div class="stack-layer" style="padding-left:${indent + 4}px">
+        <span class="stack-connector">${esc(layer.connector)}</span>
+        <span class="stack-name ${cls}">${esc(layer.name)}</span>
+        ${badge}
+      </div>`;
+    }
+    html += `</div></div></div>`;
+  }
+
+  /* -- FOOTER -- */
+  const updatedDate = D.lastUpdated || new Date().toLocaleDateString();
+  html += `<footer class="portal-footer">
+    <div>Context Engineering Training — Updated ${esc(updatedDate)}</div>`;
+
+  // Meta-teaching note after Session 5 or Session 8
+  const hcId = highestCompleted();
+  if (hcId >= 5) {
+    const note5 = "This portal is itself a context engineering artifact — a file generated by a skill, injected with your data, and delivered as an artifact. You’re learning the system by using the system.";
+    const note8 = "This portal was built by a plugin: a multi-skill system with an orchestrator, state file, and gates. Sessions 5, 7, and 8 in action.";
+    html += `<div class="meta-note">${hcId >= 8 ? note8 : note5}</div>`;
+  }
+
+  html += `</footer>`;
+
+  // Modal overlay (persistent, reused)
+  html += `<div class="modal-overlay" id="sessionModal"><div class="modal-content" id="modalContent"></div></div>`;
+
+  portal.innerHTML = html;
+  bindEvents();
+}
+
+/* ============================================================
+   MODAL RENDERING
+   ============================================================ */
+function renderModal(sessionId) {
+  const s = D.sessions.find(s => s.id === sessionId);
+  if (!s) return;
+  const content = (D.sessionContent || {})[sessionId] || {};
+  const exercises = D.exercises[sessionId] || [];
+  const concepts = D.concepts[sessionId] || [];
+  const exDescs = content.exerciseDescriptions || {};
+  const wfEntry = (D.workflow.builtSoFar || []).find(w => w.session === sessionId);
+
+  // Status label
+  const statusMap = {
+    'completed': { label: 'Complete', cls: 'completed' },
+    'in-progress': { label: 'In Progress', cls: 'in-progress' },
+    'not-started': { label: 'Not Started', cls: 'not-started' },
+  };
+  const st = statusMap[s.status] || statusMap['not-started'];
+
+  // Per-session progress
+  const exDone = exercises.filter(e => e.status === 'done').length;
+  const exTotal = exercises.length;
+  const exPct = exTotal > 0 ? Math.round((exDone / exTotal) * 100) : (s.status === 'completed' ? 100 : 0);
+
+  let html = '';
+
+  // Header
+  html += `<div class="modal-header">
+    <div class="modal-header-left">
+      <div class="modal-session-num">Session ${s.id}</div>
+      <div class="modal-session-title">${esc(s.title)}</div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="modal-tier-badge" data-tier="${s.tier}">Tier ${tierNum(s.tier)}: ${tierLabel(s.tier)}</span>
+        <span class="modal-status-badge ${st.cls}">${st.label}</span>
+      </div>
+    </div>
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+  </div>`;
+
+  // Body
+  html += `<div class="modal-body">`;
+
+  // Per-session progress bar
+  if (s.exercisesTotal > 0) {
+    html += `<div class="modal-progress">
+      <div class="modal-progress-label">
+        <span>Exercises</span>
+        <span>${exDone} of ${exTotal}</span>
+      </div>
+      <div class="modal-progress-track">
+        <div class="modal-progress-fill" data-tier="${s.tier}" style="width: ${exPct}%"></div>
+      </div>
+    </div>`;
+  }
+
+  // Big Idea
+  if (content.bigIdea) {
+    html += `<div class="modal-section">
+      <div class="modal-section-label">The Big Idea</div>
+      <div class="modal-big-idea">${esc(content.bigIdea)}</div>
+    </div>`;
+  }
+
+  // Exercises with descriptions
+  if (exercises.length > 0) {
+    html += `<div class="modal-section"><div class="modal-section-label">Exercises</div>`;
+    for (const ex of exercises) {
+      const statusIcon = ex.status === 'done' ? '✓' : (ex.status === 'skipped' ? '⏭' : '○');
+      const statusClass = ex.status === 'done' ? 'done' : (ex.status === 'skipped' ? 'skipped' : 'not-done');
+      const desc = exDescs[ex.name] || '';
+      html += `<div class="modal-exercise-item">
+        <div class="modal-exercise-status ${statusClass}">${statusIcon}</div>
+        <div class="modal-exercise-info">
+          <div class="modal-exercise-name">
+            ${esc(ex.name)}
+            <span class="exercise-type ${ex.type}">${ex.type}</span>
+          </div>
+          ${desc ? `<div class="modal-exercise-desc">${esc(desc)}</div>` : ''}
+        </div>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Concepts
+  if (concepts.length > 0) {
+    html += `<div class="modal-section"><div class="modal-section-label">Key Concepts</div>`;
+    for (const c of concepts) {
+      html += `<div class="modal-concept-item">
+        <div class="modal-concept-name">${esc(c.name)}</div>
+        <div class="modal-concept-desc">${esc(c.desc)}</div>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Workflow contribution
+  if (wfEntry) {
+    html += `<div class="modal-section">
+      <div class="modal-section-label">Workflow Contribution</div>
+      <div class="workflow-note">${esc(wfEntry.description || wfEntry.note || '')}</div>
+    </div>`;
+  }
+
+  // What to Remember
+  if (content.whatToRemember) {
+    html += `<div class="modal-section">
+      <div class="modal-section-label">What to Remember</div>
+      <div class="modal-remember">${esc(content.whatToRemember)}</div>
+    </div>`;
+  }
+
+  html += `</div>`; // modal-body
+
+  const modalContent = $('#modalContent');
+  modalContent.innerHTML = html;
+
+  // Open modal
+  const overlay = $('#sessionModal');
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+
+  // Close handlers
+  const closeBtn = $('#modalClose');
+  const closeModal = () => {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+  // Esc key
+  const escHandler = (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+      document.removeEventListener('keydown', escHandler);
+    }
+  };
+  document.addEventListener('keydown', escHandler);
+}
+
+/* ============================================================
+   EVENT BINDING
+   ============================================================ */
+function bindEvents() {
+  // Theme toggle
+  const toggle = $('#themeToggle');
+  const icon = $('#themeIcon');
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      icon.textContent = isDark ? '☀' : '☾';
+    });
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    icon.textContent = isDark ? '☾' : '☀';
+  }
+
+  // Tier filter tabs
+  $$('.tier-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $$('.tier-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+      $$('.session-node').forEach(node => {
+        const sid = parseInt(node.getAttribute('data-session-id'), 10);
+        const session = D.sessions.find(s => s.id === sid);
+        node.style.display = (filter === 'all' || (session && session.tier === filter)) ? '' : 'none';
+      });
+      $$('.tier-label').forEach(label => {
+        const tier = label.getAttribute('data-tier');
+        label.style.display = (filter === 'all' || tier === filter) ? '' : 'none';
+      });
+    });
+  });
+
+  // Session nodes — completed/in-progress open modal, not-started are inert
+  $$('.session-node').forEach(node => {
+    const header = $('.session-header', node);
+    if (!header) return;
+    const sessionId = parseInt(node.getAttribute('data-session-id'), 10);
+
+    header.addEventListener('click', () => renderModal(sessionId));
+    header.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        renderModal(sessionId);
+      }
+    });
+  });
+
+  // Concept search
+  const searchInput = $('#conceptSearch');
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      $$('#conceptList .concept-entry').forEach(entry => {
+        const text = entry.getAttribute('data-search') || '';
+        entry.style.display = (!q || text.includes(q)) ? '' : 'none';
+      });
+    });
+  }
+
+  // Stack toggle
+  const stackToggle = $('#stackToggle');
+  const stackSection = $('#stackSection');
+  if (stackToggle && stackSection) {
+    stackToggle.addEventListener('click', () => {
+      const isExpanded = stackSection.classList.contains('expanded');
+      const body = $('.stack-body', stackSection);
+      if (isExpanded) {
+        stackSection.classList.remove('expanded');
+        body.style.maxHeight = '0';
+      } else {
+        stackSection.classList.add('expanded');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+  }
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+render();
+</script>
+</body>
+</html>

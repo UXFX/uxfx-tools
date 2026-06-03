@@ -1,10 +1,24 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "uxfx-tools",
+  "version": "1.0.0",
   "description": "Plugins by Dale Jones (UXFX). Each one does real work and teaches the thinking behind it.",
   "owner": {
     "name": "Dale Jones",
     "email": "dale@uxfx.io"
   },
-  "plugins": []
+  "plugins": [
+    {
+      "name": "context-engineering-training",
+      "source": "./plugins/context-engineering-training",
+      "description": "A 9-session, hands-on program that teaches context engineering for Claude Desktop and Cowork — non-technical students build a real workflow from first principles to a productionized system.",
+      "category": "learning"
+    },
+    {
+      "name": "premise",
+      "source": "./plugins/premise",
+      "description": "Thinking partner for work you've been handed or taken on. Separates what you know from what you're assuming, then produces a Launch Brief — understanding plus a plan — and hands off at the starting line.",
+      "category": "productivity"
+    }
+  ]
 }

@@ -1,0 +1,20 @@
+{
+  "name": "context-engineering-training",
+  "version": "0.1.0",
+  "description": "A 9-session training program that teaches context engineering for Claude Desktop and Cowork. Claude teaches Claude — students learn by doing, building a real workflow from Session 1 through a fully productionized system by Session 8.",
+  "author": {
+    "name": "Dale Jones",
+    "email": "dale@uxfx.io"
+  },
+  "keywords": [
+    "training",
+    "context-engineering",
+    "claude-desktop",
+    "cowork",
+    "skills",
+    "plugins",
+    "workflow-automation",
+    "non-technical",
+    "education"
+  ]
+}

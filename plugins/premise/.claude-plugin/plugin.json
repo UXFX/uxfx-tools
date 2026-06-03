@@ -1,0 +1,9 @@
+{
+  "name": "premise",
+  "description": "Thinking partner for work you've been handed or taken on: it separates what you know from what you're assuming, then produces a Launch Brief (understanding + a plan) and hands off at the starting line. Launch tool, not a run tool.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Dale Jones",
+    "email": "dale@uxfx.io"
+  }
+}
