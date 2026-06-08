@@ -45,6 +45,8 @@ Tag every claim, in both halves, visibly. Without this, Premise becomes a confid
 
 Tag by *where the knowledge came from*, not how confident the person sounds. Never silently upgrade a tag.
 
+External info the person gathered *themselves* before the session (a stat they found, a range they read) enters as `[inferred]` — found-and-reasoned, no source in hand. It becomes `[fact]` only when re-grounded with an inline source; until then it's context, not ground.
+
 ---
 
 ## The spine
@@ -143,12 +145,12 @@ Open up, but stay targeted by the confirmed map — work only genuine blanks.
 **Triage by resolver — who closes the gap:**
 
 - **Researchable** — the world answers it (market norms, competitors, regulation, benchmarks).
-- **Authority's** — someone above owns it (what the manager/client meant, the strategy tie) → upward.
+- **Someone else's** — another person owns the answer. Usually the authority above (what the manager/client meant, the strategy tie) → upward. Sometimes another internal owner — a date or dependency a different team holds → ask them directly; these often close fast and shouldn't wait on the authority conversation.
 - **Yours to decide** — no one else owns it and research can't tell you → the person's call. (Sole owner: most "upward" items land here.)
 
 Naming the split teaches which to *research*, *ask*, *decide*. Which pile an item lands in follows the authority context from Step 2.
 
-**Research (optional, where it helps).** Offer skip / quick / deeper on researchable gaps; if web access is available, use it to ground options, else say so rather than guess. Tag findings `[fact]` (source inline) or `[hypothesis]`. Never research an internal gap (authority's or yours), and never silently promote `[hypothesis]` → `[fact]`. Research grounds options; it never replaces judgment, the upward questions, or the person's decisions.
+**Research (optional, where it helps).** Offer skip / quick / deeper on researchable gaps; if web access is available, use it to ground options, else say so rather than guess. Tag findings `[fact]` (source inline) or `[hypothesis]`. Never research an internal gap (someone else's or yours), and never silently promote `[hypothesis]` → `[fact]`. Research grounds options; it never replaces judgment, the upward questions, or the person's decisions.
 
 **Recognition over generation.** Don't ask them to invent from nothing — offer 2–3 tagged options to react to:
 
@@ -161,6 +163,8 @@ On pick, re-tag by new provenance (a pick confirmed from real knowledge → `[to
 > "'All of the above' isn't buildable. If you could move only one number — activation, tickets, expansion revenue, signups — which? That's what we design for."
 
 The metric is the purpose made un-dodgeable; the pick re-tags from a hollow `[told]` to a real one, and feeds Step 5.
+
+**When the *authority* dodged** (their "all of the above," not the person's): the person's pick can't settle it — only the authority can. Have them pick a best-guess anyway, *kept labeled* `[inferred]`, and use it to frame the upward question as a choice between named metrics ("pipeline, renewals, or brand — which one number?"). The hollow `[told]` re-tags only when the authority answers.
 
 **Pressure-test yours-to-decide items** — don't just collect the answer; you're the only check. Challenge each call before it counts:
 
@@ -241,11 +245,11 @@ Rules:
 - Length follows the work but stays compressed — every line earns its place; if it reads like a transcript, it failed.
 - **Research lives in the brief** — every `[fact]` the Plan rests on is here with its source inline; the brief stands on its own (a side note may hold the fuller trail, but the grounding lives here).
 
-Present the brief in chat; save to `launch-brief.md`; mark `position.md` **complete**. The brief is now the person's; track nothing further.
+Write the full brief — *including* the approach section — then present it in chat, save to `launch-brief.md`, and mark `position.md` **complete**. Step 7 doesn't add content to the brief; it walks the approach so the sequencing logic lands, then hands off.
 
 ### Step 7 — The approach
 
-The plan of attack — **not** a work breakdown (no tasks, estimates, or schedule). Sequenced into three buckets:
+Walk the brief's approach in chat — **not** a work breakdown (no tasks, estimates, or schedule). The content was written at Step 6; this step makes its logic land. Sequenced into three buckets:
 
 - **START NOW** — invariant and grounded, buildable today regardless of the open forks. Turns "I'm blocked" into "I'm moving." An unconfirmed foundation doesn't mean nothing can start — find the work that holds across every outcome.
 - **GATED** — branches once a fork resolves; name it as a pluggable piece waiting on a specific answer, don't drop it or fake it.
