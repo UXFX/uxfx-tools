@@ -34,27 +34,27 @@ That's the app itself done. Now connect it to the UXFX plugins.
 
 Plugins come from marketplaces — catalogs you connect to Claude. This repository is one. Add it once and both plugins become available to install.
 
-1. In Claude Desktop, open the **Customize** menu in the left sidebar.
-2. Open the **Plugins** tab.
-3. In the **Personal plugins** section, click the **+** button, then select **Add marketplace**.
+1. In Claude Desktop, open **Customize** in the left sidebar.
+2. Click **Browse plugins**. A Directory window opens.
+3. At the top, select **Personal**, then click the **+** button and choose **Add marketplace**.
 4. Choose **Add from a repository** and enter:
 
    ```
-   https://github.com/UXFX/uxfx-tools
+   UXFX/uxfx-tools
    ```
 
-5. Confirm. The UXFX marketplace now appears in your plugins list.
+5. Click **Sync**. You'll see a notice about trusting plugin sources — that's standard for any marketplace added from a repository.
+6. A **uxfx-tools** tab appears in the Directory, showing both plugins.
 
 ---
 
 ## Step 3: Install the plugins
 
-1. Still in the **Plugins** tab, click **Browse plugins**.
-2. Find the UXFX plugins and click **Install** on each one you want:
-   - **premise** — a thinking partner for work you've been handed
-   - **context-engineering-training** — a 9-session course on working with Claude
+1. In the **uxfx-tools** tab you just added, click the **+** on each plugin you want:
+   - **Premise** — a thinking partner for work you've been handed
+   - **Context engineering training** — a 9-session course on working with Claude
 
-You can install one or both. Each is independent.
+You can install one or both. Each is independent. Installed plugins appear in the left sidebar of the Customize page under **Personal plugins**.
 
 ---
 
@@ -101,23 +101,23 @@ The course will tell you when a session needs **Cowork** — Claude Desktop's mo
 
 ## Updating plugins to new versions
 
-These plugins improve over time. When a new version ships, your installed copy doesn't update by itself — you refresh the marketplace to pull it in.
+These plugins improve over time. When a new version ships, your installed copy doesn't update by itself — you pull the update in.
 
-1. In Claude Desktop, open **Customize** → **Plugins**.
-2. Find the **uxfx-tools** marketplace in your Personal plugins section.
-3. Open its menu and choose **Update**. This re-syncs the marketplace with the latest published version from this repository.
-4. Check the plugin's version number to confirm it changed (current versions are listed on each plugin's page).
+1. In Claude Desktop, open **Customize** in the left sidebar.
+2. Under **Personal plugins**, click the plugin you want to update (for example, **Premise**). Its detail page opens.
+3. Click **Update** in the top right. This pulls the latest published version from this repository.
+4. The **Version** and **Last updated** fields on the same page confirm what you're now running.
 
-If the update doesn't seem to take effect, the reliable fallback is: remove the marketplace (menu → **Remove**), then add it again following Step 2, and reinstall the plugins. Your conversations are not affected — removing a plugin only removes the tool, never your chat history.
+If an update doesn't seem to take effect, the reliable fallback is: open **Browse plugins** → **Personal**, click the **⋯** menu on the **uxfx-tools** tab and remove it, then add it again following Step 2 and reinstall the plugins. Your conversations are not affected — removing a plugin only removes the tool, never your chat history.
 
-**Tip:** when an update announcement mentions a version number (for example, premise 1.2.0), compare it against what your Plugins tab shows after updating. If they match, you're current.
+**Tip:** when an update announcement mentions a version number (for example, Premise 1.2.0), compare it against the **Version** field on the plugin's detail page after updating. If they match, you're current.
 
 ---
 
 ## Troubleshooting
 
-- **No Plugins tab or Customize menu?** Check that you're signed in with a paid plan account. Plugins aren't available on the free plan.
-- **Marketplace won't add?** Re-check the URL — it must be exactly `https://github.com/UXFX/uxfx-tools`.
-- **A skill doesn't appear when typing "/"?** Confirm the plugin shows as installed under Customize → Plugins, and start a fresh conversation.
+- **No Customize menu or Browse plugins button?** Check that you're signed in with a paid plan account. Plugins aren't available on the free plan.
+- **Marketplace won't add?** Re-check what you entered — it must be exactly `UXFX/uxfx-tools` (or the full URL, `https://github.com/UXFX/uxfx-tools`).
+- **A skill doesn't appear when typing "/"?** Open the plugin's page under Customize → Personal plugins and confirm it's installed and its toggle is switched on, then start a fresh conversation.
 
 Questions or problems with the plugins themselves: **dale@uxfx.io**
