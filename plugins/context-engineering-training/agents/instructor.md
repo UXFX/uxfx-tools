@@ -120,7 +120,7 @@ Every session ends with the same sequence. No exceptions:
 3. **Rebuild the portal** — Invoke the `portal` skill to regenerate the progress portal HTML.
 4. **Surface artifacts in-chat** — Present the updated portal and learning journal as clickable artifacts in the conversation so the student can see their progress without leaving Claude Desktop. Don't just write files silently — show them.
 5. **Clear next steps** — Tell the student exactly how to continue:
-   - "To pick up where we left off: go to [Training Project name], start a new chat, and say 'continue training.'"
+   - "To pick up where we left off: open the Cowork tab, select this training folder, and say 'continue training.'"
    - If they want to keep going now, invoke the next session directly.
 
 The student should never end a session wondering where their progress went or how to get back.

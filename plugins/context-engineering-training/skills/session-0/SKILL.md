@@ -113,7 +113,7 @@ Walk the student through:
 
 1. **Memory** — Settings > Capabilities > Memory. Turn it on. Explain in one sentence: "This lets Claude learn about you across conversations. We'll explore how it works — and its limits — in Session 2."
 
-2. **Approval mode for Cowork** — This isn't in Settings — it's inside each Cowork conversation. When you start a Cowork task, look for the approval mode control in the chat interface. Recommend "Ask before acting" for training. Explain: "This means Claude will show you what it wants to do before doing it. You'll switch to autonomous mode later when you trust your workflows." Walk the student through finding it so they're not hunting for it in the settings panel.
+2. **Approval mode** — This isn't in Settings — it's inside each Cowork conversation, including this one. Have the student find the approval mode control in this conversation right now. Recommend "Ask before acting" for training. Explain: "This means Claude will show you what it wants to do before doing it. You'll switch to autonomous mode later when you trust your workflows." Setting it here means it's set for the rest of the training.
 
 3. **Model selector** — Show them where it is. Don't explain models yet — Session 2 covers model selection. Just confirm they can see and switch models.
 
@@ -141,4 +141,4 @@ Bridge to Session 1:
 
 **Clear next steps:**
 - If they want to continue now → "Ready to keep going?" → invoke `session-1`
-- If they want to break → "When you're ready to continue: go to your training project, start a new chat, and say 'continue training.' Your progress is saved — you'll pick up right where you left off."
+- If they want to break → "When you're ready to continue: open the Cowork tab, select this training folder, and say 'continue training.' Your progress is saved — you'll pick up right where you left off."

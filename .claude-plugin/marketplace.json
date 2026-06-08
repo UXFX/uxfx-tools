@@ -11,7 +11,7 @@
     {
       "name": "context-engineering-training",
       "source": "./plugins/context-engineering-training",
-      "description": "A 9-session, hands-on program that teaches context engineering for Claude Desktop and Cowork — non-technical students build a real workflow from first principles to a productionized system.",
+      "description": "A 9-session, hands-on program that teaches context engineering for Claude Desktop and Cowork — non-technical students build a real workflow from first principles to a productionized system. Runs in Cowork.",
       "category": "learning"
     },
     {

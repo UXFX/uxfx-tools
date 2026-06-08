@@ -35,9 +35,9 @@ The Big Idea: Cowork mode turns Claude from a chat partner into an agent that wo
 
 ### Frame
 
-You've been mounting folders and working with files since Session 3 — that works in regular chat. Cowork is the step up. It adds code execution, sub-agents, document creation (Word, Excel, PowerPoint, PDF), shell commands, and autonomous operation.
+Your workflow has lived on the chat side since Session 3 — a Project, mounted folders, conversations. The training, meanwhile, has been running in Cowork since Session 0. You've been inside Cowork this whole time without it being the lesson. Now it is: this session moves YOUR workflow in.
 
-The key difference: in regular chat, Claude reads your files and responds in the conversation. In Cowork, Claude operates within your environment — creating files, running scripts, coordinating parallel work, and producing deliverables directly to your file system.
+What Cowork adds over chat: code execution, sub-agents, document creation (Word, Excel, PowerPoint, PDF), shell commands, and autonomous operation. The key difference: in regular chat, Claude reads your files and responds in the conversation. In Cowork, Claude operates within your environment — creating files, running scripts, coordinating parallel work, and producing deliverables directly to your file system.
 
 ### Show
 
@@ -335,4 +335,4 @@ Invoke `portal` skill to regenerate the progress portal.
 
 **Clear next steps:**
 - If they want to continue now → "Ready to keep going?" → invoke `session-6`
-- If they want to break → "When you're ready to continue: go to your training project, start a new chat, and say 'continue training.' Your progress is saved — you'll pick up right where you left off."
+- If they want to break → "When you're ready to continue: open the Cowork tab, select this training folder, and say 'continue training.' Your progress is saved — you'll pick up right where you left off."

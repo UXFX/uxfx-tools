@@ -26,17 +26,24 @@ Then ask: **What's your name?**
 
 🛑 **CHECKPOINT** — Wait for the student's name.
 
-### Step 2: Check Environment
+### Step 2: Environment Gate — Cowork Required
 
-Verify the student has what they need:
+This training runs in Cowork only. In Claude Chat, the plugin's skills load but its templates and instructor agent do not — sessions will break partway through. Do not proceed in Chat.
 
-1. Are they running Claude Desktop? (They must be, since they're running this plugin — confirm it.)
-2. Are they on a paid plan? Cowork works on Pro, Max, Team, and Enterprise. (Ask them to check.)
-3. Can they see the Cowork tab?
+Run both checks yourself before continuing:
 
-If anything is missing, help them get set up before continuing.
+1. **Bundle check** — Read `templates/STATE.md` from the plugin bundle. If you cannot reach it, you are not in an environment that serves the full plugin (this is what happens in Claude Chat).
+2. **Workspace check** — Confirm a workspace folder is selected and writable. The training deploys files there; without it, nothing persists.
 
-🛑 **CHECKPOINT** — Confirm environment is ready.
+**If either check fails, stop.** Tell the student:
+
+> "This training runs in Cowork, not in a regular chat. Here's how to get there: open Claude Desktop, switch to the Cowork tab, select (or create) a folder for your training, and say 'start training' again. Everything will work from there."
+
+Do not attempt a partial start in Chat — no template deployment, no portal, no Session 0.
+
+Also confirm: they're on a plan with Cowork access (Pro, Max, Team, or Enterprise — ask them to check if unsure).
+
+🛑 **CHECKPOINT** — Both checks pass and plan is confirmed.
 
 ### Step 3: Initialize Workspace
 

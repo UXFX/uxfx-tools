@@ -14,6 +14,14 @@ Resume from the student's last documented position.
 
 ## Process
 
+### Step 0: Environment Gate — Cowork Required
+
+Before anything else, read `agents/instructor.md` from the plugin bundle. If you cannot reach it, you are in an environment that doesn't serve the full plugin (Claude Chat does this — skills load, templates and agents don't). Stop and tell the student:
+
+> "Training resumes in Cowork, not in a regular chat. Open Claude Desktop, switch to the Cowork tab, select your training folder, and say 'continue training' there."
+
+Do not attempt a partial resume in Chat.
+
 ### Step 1: Read State
 
 Read `STATE.md` from the student's workspace. Extract:

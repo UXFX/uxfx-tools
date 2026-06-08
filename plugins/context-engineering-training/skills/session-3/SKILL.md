@@ -340,4 +340,4 @@ Invoke `portal` skill to regenerate the progress portal.
 
 **Clear next steps:**
 - If they want to continue now → "Ready to keep going?" → invoke `session-4`
-- If they want to break → "When you're ready to continue: go to your training project, start a new chat, and say 'continue training.' Your progress is saved — you'll pick up right where you left off. And remember — set up that Project before next session."
+- If they want to break → "When you're ready to continue: open the Cowork tab, select this training folder, and say 'continue training.' Your progress is saved — you'll pick up right where you left off. And remember — set up that Project before next session."
