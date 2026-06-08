@@ -33,3 +33,4 @@ Source of truth for what is published in this marketplace and where each plugin 
 - 2026-05-31 — context-engineering-training v0.1.0 promoted (2nd plugin). Gate: added missing YAML frontmatter to instructor agent; denylist clean.
 - 2026-05-31 — premise v1.0.0 promoted (3rd plugin). Gate clean (0 denylist hits, 0 junk). Shipped at 1.0.0 per owner; workshop STATE.md draft note treated as stale.
 - 2026-05-31 — Split: foundry moved to private marketplace `uxfx-pro`. `uxfx-tools` is now PUBLIC, holding premise + context-engineering-training only.
+- 2026-06-07 — Added `GETTING-STARTED.md` (repo root): end-user onboarding — Claude Desktop install (macOS/Windows), add marketplace, install plugins, first-run walkthroughs, updating to new versions. Steps verified against support.claude.com articles 10065433 and 13837440. Denylist scan clean.
