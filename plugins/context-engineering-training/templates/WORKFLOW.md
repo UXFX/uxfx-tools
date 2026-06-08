@@ -1,6 +1,6 @@
 # My Workflow
 
-<!-- Defined in Session 1, refined throughout the training -->
+<!-- Defined in Session 2, refined throughout the training -->
 
 ## Description
 

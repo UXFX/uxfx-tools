@@ -52,8 +52,9 @@ Profile Preferences (account-wide defaults)
               ├── Memory (cross-session continuity)
               ├── Handoff Files (project state persistence)
               ├── Transition Prompts (session bootstrapping)
+              ├── Cowork Context Layers (global + folder instructions, Cowork projects)
               ├── Sub-Agents (parallel work + context isolation)
-              └── Artifacts (standalone deliverables)
+              └── Artifacts (deliverables + live, refreshing views)
 ```
 
 ### Show
@@ -92,6 +93,8 @@ Present the information placement framework:
 |---|---|---|
 | Applies to every conversation | Profile preferences | Sessions 0, 2 |
 | Applies to every conversation in a workstream | Project instructions or CLAUDE.md | Sessions 3, 7 |
+| Applies to every Cowork task | Cowork global instructions | Session 5 |
+| Applies to Cowork work in one folder | Folder instructions | Session 5 |
 | Needs to be referenced but not always loaded | Project knowledge | Session 3 |
 | Specific to one session | Conversation or transition prompt | Session 4 |
 | Needs to persist across sessions precisely | Handoff file | Session 4 |

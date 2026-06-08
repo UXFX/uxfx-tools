@@ -17,7 +17,7 @@ The Big Idea: Claude is a reasoning partner with a finite context window. Everyt
 | File | What You Need |
 |------|---------------|
 | `STATE.md` | Current position, student info |
-| `WORKFLOW.md` | Student's workflow (from Session 1 or initially blank — gets filled in Exercise 1) |
+| `WORKFLOW.md` | Student's workflow (initially blank — gets filled in Exercise 1) |
 | `agents/instructor.md` | Teaching persona |
 
 ## Writes
@@ -100,7 +100,9 @@ Key point to land: each layer takes up space in the context window. Loading all 
 
 Memory is the most misunderstood feature. People either over-rely on it (expecting Claude to remember project details precisely) or ignore it entirely. The truth: memory generates summaries from your conversations that persist across chats. Useful for personal preferences and recurring context. Not reliable for specific facts, project state, or anything that needs to be exactly right.
 
-Incognito chats exist for conversations you don't want affecting memory.
+Three controls worth knowing: you can see and edit everything Claude remembers (Settings > Capabilities > "View and edit memory"), you can update it directly from any chat — tell Claude "remember that I..." and the summary updates immediately, no waiting for the daily synthesis — and incognito chats exist for conversations you don't want affecting memory at all.
+
+One preview for Session 3: Projects get their own separate memory, isolated from your account-wide memory.
 
 ### Show
 
@@ -108,7 +110,8 @@ Demonstrate memory's boundaries:
 
 1. Share something specific the student told you in this session (or earlier) and show whether memory captured it.
 2. Explain what memory tends to retain well (preferences, broad patterns, recurring topics) versus what it drops (specific numbers, exact file paths, precise project state).
-3. Mention incognito mode: "If you want to explore something without it affecting what Claude remembers about you, use an incognito chat."
+3. Have them look at their actual memory: walk them to Settings > Capabilities > "View and edit memory." Whatever's in there is what every new conversation starts with. If it's wrong or stale, they can edit it right there.
+4. Mention incognito mode: "If you want to explore something without it affecting what Claude remembers about you, use an incognito chat."
 
 ### Debrief
 
@@ -310,7 +313,9 @@ Point to this session itself: "We've been having a conversation for a while now.
 
 **Step 2:** Acknowledge what they said. Then explain: "If you ended this conversation and started a new one, memory might retain the preference and the context. The specific fact is less likely to survive intact. And if you used an incognito chat, none of it would be stored."
 
-**Step 3:** Encourage them to test this after the session — start a new conversation and see what Claude remembers. Then try incognito.
+**Step 3:** Now show the explicit path. Have them pick the one thing from Step 1 they most want Claude to retain and say: "Remember that [thing]." Explain the difference: passive memory synthesizes on its own schedule and keeps what it judges important; an explicit "remember" updates the summary immediately. If something matters, say so — don't hope the synthesis catches it.
+
+**Step 4:** Encourage them to test this after the session — start a new conversation and see what Claude remembers, then check Settings > Capabilities > "View and edit memory" to see the difference between what they told Claude to remember and what it picked up on its own.
 
 ### Debrief
 

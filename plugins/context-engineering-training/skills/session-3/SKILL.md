@@ -48,6 +48,8 @@ Demonstrate the difference:
 
 3. Connect back to Session 2's personalization stack: "Profile preferences are Layer 1 — they apply everywhere. Project instructions are Layer 2 — they apply to one workstream. You're now designing Layer 2."
 
+4. One more thing Projects give you: their own memory. Remember from Session 2 that Claude's memory builds a summary of who you are across all your chats? Each Project gets a separate memory, isolated from that account-wide summary and from other Projects. What Claude learns about your workflow inside this Project stays scoped to it — another reason one Project per workstream pays off.
+
 ### Debrief
 
 "Projects are persistent context. The value isn't the feature — it's that you stop repeating yourself and start compounding quality. The next concepts teach you how to fill a Project well."
@@ -186,7 +188,7 @@ Make the tradeoff concrete using the student's setup:
 
 "Time to design your first real Project — a persistent workspace for your actual workflow. We'll do the design work right here in this training session, then you'll set it up afterward."
 
-**Important context:** You can only have one Claude Desktop conversation active at a time, so we're not going to switch away from training to create the Project live. Instead, we'll design everything here — instructions, knowledge strategy, structure — and save it to a file. After this session, you'll create the Project and paste in what we built. This is actually a better approach: designing context architecture is thinking work, and this conversation has all the context about your workflow.
+**Important context:** Projects are created in the app's Projects area, outside this conversation — so we're not going to bounce you out of training to set one up live. Instead, we'll design everything here — instructions, knowledge strategy, structure — and save it to a file. After this session, you'll create the Project and paste in what we built. This is actually the better approach anyway: designing context architecture is thinking work, and this conversation has all the context about your workflow.
 
 ### Do
 

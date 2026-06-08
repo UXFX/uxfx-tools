@@ -27,7 +27,7 @@ This is the map. Consult it at session transitions, when checking gates, or when
 
 | Session | Skill | Concepts | Exercises | Gate |
 |---------|-------|----------|-----------|------|
-| 5 | session-5 | Cowork mode, approval modes, artifacts, sub-agents, research ops, error recovery | 3 (2 throughline, 1 standalone) | None |
+| 5 | session-5 | Cowork mode, approval modes, Cowork context layers, static + live artifacts, sub-agents, research ops, error recovery | 3 (2 throughline, 1 standalone) | None |
 | 6 | session-6 | Connectors, plugins, scheduled tasks, Chrome extension, batch processing | 4 (2 throughline, 2 standalone) | None |
 | 7 | session-7 | Skills, decision framework, SKILL.md anatomy, CLAUDE.md | 4 (3 throughline, 1 standalone) | None |
 

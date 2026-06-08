@@ -31,7 +31,7 @@ Then ask: **What's your name?**
 Verify the student has what they need:
 
 1. Are they running Claude Desktop? (They must be, since they're running this plugin — confirm it.)
-2. Do they have a Pro or Max plan? (Ask them to check.)
+2. Are they on a paid plan? Cowork works on Pro, Max, Team, and Enterprise. (Ask them to check.)
 3. Can they see the Cowork tab?
 
 If anything is missing, help them get set up before continuing.

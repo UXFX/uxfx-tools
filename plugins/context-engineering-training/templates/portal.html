@@ -1004,7 +1004,8 @@ const TRAINING_DATA = /* %%DATA_PLACEHOLDER%% */ {
     5: [
       { name: "Cowork mode", desc: "File access + code execution + sub-agents + document creation." },
       { name: "Approval modes", desc: "’Ask before acting’ for learning, ‘Act without asking’ for speed." },
-      { name: "Artifacts", desc: "Standalone deliverables in a dedicated panel." },
+      { name: "Cowork context layers", desc: "Global instructions, Cowork projects, folder instructions. Memory lives in Cowork projects only." },
+      { name: "Artifacts — static and live", desc: "Static artifacts are deliverables; live artifacts refresh with current data from connected apps." },
       { name: "Sub-agents", desc: "Parallel work with isolated context. A context management technique." },
       { name: "Research in Cowork", desc: "Search, save to file, review, then produce. Explicit step." },
       { name: "Error recovery", desc: "Three modes: context exhaustion, tool failures, scope drift." }
@@ -1083,7 +1084,7 @@ const TRAINING_DATA = /* %%DATA_PLACEHOLDER%% */ {
     },
     5: {
       bigIdea: "Cowork mode turns Claude from a chat partner into an agent that works with your files and your computer. The shift: from 'I chat with Claude and copy-paste results' to 'Claude works alongside me in my actual environment.'",
-      whatToRemember: "Cowork is file access + code execution + sub-agents + document creation. Start with 'Ask before acting' until you trust the workflow. Sub-agents are a context management technique. Research in Cowork is an explicit step. Three failure modes: context exhaustion, tool failures, scope drift.",
+      whatToRemember: "Cowork is file access + code execution + sub-agents + document creation. Start with 'Ask before acting' until you trust the workflow. Cowork has its own context layers: global instructions, Cowork projects, folder instructions — and memory lives only in Cowork projects. Static artifacts are deliverables; live artifacts refresh with current data and use approved connectors without asking. Sub-agents are a context management technique. Research in Cowork is an explicit step. Three failure modes: context exhaustion, tool failures, scope drift.",
       exerciseDescriptions: {
         "Move Your Workflow Into Cowork": "Mount your workspace folder, have Claude read the handoff file, then run a workflow step entirely in Cowork — reading inputs and writing outputs to the file system.",
         "Produce a Real Deliverable": "Have Claude produce an actual output from your workflow — a Word doc, spreadsheet, or report you'd actually use. Open it on your computer.",
@@ -1147,8 +1148,9 @@ const TRAINING_DATA = /* %%DATA_PLACEHOLDER%% */ {
     { name: "Memory", session: 2, indent: 3, connector: "├──" },
     { name: "Handoff Files", session: 4, indent: 3, connector: "├──" },
     { name: "Transition Prompts", session: 4, indent: 3, connector: "├──" },
+    { name: "Cowork Context Layers", session: 5, indent: 3, connector: "├──" },
     { name: "Sub-Agents", session: 5, indent: 3, connector: "├──" },
-    { name: "Artifacts", session: 5, indent: 3, connector: "└──" }
+    { name: "Artifacts & Live Artifacts", session: 5, indent: 3, connector: "└──" }
   ]
 };
 

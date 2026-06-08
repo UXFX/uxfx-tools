@@ -102,6 +102,8 @@ Show the three ways to create a scheduled task:
 
 Walk through creating a test task using whichever method feels most natural to the student (something harmless like a daily weather summary or a reminder). Then show them the Scheduled Tasks page where they can see all their tasks, review run history, pause/resume, or run on demand.
 
+One related capability worth knowing: on Pro and Max plans, you can also assign Cowork tasks from the Claude mobile app — message Claude from your phone, and it does the work on your desktop using your local files and connectors, delivering results back to the same conversation. Same constraint as scheduled tasks: the desktop app has to be open and awake. Scheduling handles the recurring work; mobile assignment handles the "I just thought of something" work.
+
 ### Debrief
 
 "Scheduled tasks turn manual workflows into background automation. The limitation is the app needs to be running. For your workflow, Exercise 3 will identify which step to automate."

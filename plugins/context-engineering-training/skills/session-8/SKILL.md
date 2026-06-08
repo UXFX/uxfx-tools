@@ -12,7 +12,7 @@ user-invocable: true
 
 The Big Idea: Real workflows are rarely one skill's job. A content pipeline has stages — research, draft, review, publish. A discovery process has phases — research, synthesis, validation. The power move: designing skills that hand off to each other through shared state, so Claude runs a multi-step process that spans sessions.
 
-This is the same pattern behind the Foundry plugin in the plugin ecosystem — 40+ skills organized into phases, coordinated by a shared state file, with gates preventing you from skipping ahead. You don't need 40 skills. You need three concepts: a state file, gates, and an orchestrator.
+Production-grade plugins use this same pattern at serious scale — dozens of skills organized into phases, coordinated by a shared state file, with gates preventing you from skipping ahead. This training is the pattern at teaching scale: 10 session skills, one state file, one orchestrator. You don't need dozens of skills. You need three concepts: a state file, gates, and an orchestrator.
 
 ## Reads
 

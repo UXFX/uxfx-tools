@@ -66,7 +66,7 @@ Describe what each failure mode looks like in practice:
 
 ### Frame
 
-When a session ends — for any of the three reasons — what happens to the context? Without a system, it's gone. The next conversation starts fresh. You've been compensating for this with memory (unreliable, as Session 2 showed) or by manually re-explaining everything (wasteful).
+When a session ends — for any of the three reasons — what happens to the context? Without a system, it's gone. The next conversation starts fresh. You've been compensating for this with memory (unreliable, as Session 2 showed — and standalone Cowork sessions, where you'll work from Session 5 on, don't retain memory between tasks at all) or by manually re-explaining everything (wasteful).
 
 A handoff file solves this. It's a structured document that captures the state of a project at the end of a session. It lives in your file system — not in Claude's memory — and contains: session number and date, what was completed, what decisions were made, what's next, and any open questions or blockers.
 
