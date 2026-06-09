@@ -54,6 +54,8 @@ Then list what becomes possible:
 
 "Cowork is Claude as operator, not just advisor. Everything from Sessions 2-4 still applies — context window, project instructions, handoff discipline. Cowork just gives Claude hands."
 
+One practical expectation to set: Cowork consumes your usage allocation faster than chat — agents read files, run tools, and spawn sub-agents, and all of that is work. Worth knowing before a long Cowork session, not a reason to avoid one.
+
 ### Quick Check
 
 "What's the difference between what you were doing with Claude in Session 3 and what Cowork enables? If Claude could already read your files, what actually changed?"
@@ -73,7 +75,7 @@ In Session 3, every file operation required you to be in the conversation. Cowor
 
 ### Show
 
-"Right now, this training is probably running in 'Ask before acting' mode — I proposed writing to your state file and you approved it. If you switched to autonomous mode, I'd just do it. Both have a place: 'Ask' when you're building and testing a workflow, 'Act' when you trust it and want speed."
+"Right now, this training is running in the approval mode you set back in Session 0 — 'Ask before acting,' unless you've changed it. I proposed writing to your state file and you approved it. If you switched to autonomous mode, I'd just do it. Both have a place: 'Ask' when you're building and testing a workflow, 'Act' when you trust it and want speed."
 
 ### Debrief
 
@@ -202,7 +204,7 @@ Walk through why separation matters: "If your workflow touches pricing data, and
 
 Things go wrong. Cowork tasks fail mid-execution, Claude misinterprets scope, or the session degrades quietly. Three failure modes to recognize:
 
-1. **Context exhaustion** — Claude forgets earlier instructions, output goes generic. The fix: end the session, write a handoff file (Session 4), and start fresh.
+1. **Context exhaustion** — Claude forgets earlier specifics, output goes generic; compaction has summarized your early context away. The fix: end the session, write a handoff file (Session 4), and start fresh.
 2. **Tool and permission failures** — Error messages about files, connectors, or commands. The fix: read the error, check permissions (right folder mounted? connector authenticated?), retry. Don't let Claude silently work around the failure.
 3. **Scope drift** — Output is technically correct but answers the wrong question or touches files it shouldn't. No error message — hardest to catch. The fix: guardrails in your prompts, review before approving, "Ask before acting" mode.
 

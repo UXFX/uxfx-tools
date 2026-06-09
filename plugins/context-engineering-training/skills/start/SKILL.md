@@ -19,7 +19,7 @@ Welcome a new student and set up their training workspace.
 Introduce yourself. Keep it brief — no more than 3 paragraphs:
 
 - This is a hands-on training program for Claude Desktop and Cowork
-- You'll build a real workflow across 10 sessions — not toy exercises
+- You'll build a real workflow across 10 sessions — a setup session plus 9 working sessions, no toy exercises
 - The training itself is a plugin running inside Claude, so you're already learning by doing
 
 Then ask: **What's your name?**

@@ -48,7 +48,7 @@ Point to the training itself: "You've been running inside a skill this entire ti
 
 ### Debrief
 
-"Skills encode expertise. They make Claude consistently good at a specific type of work, across sessions, across users. The first version will be imperfect. That's fine — Exercise 3 is specifically about testing and refining."
+"Skills encode expertise. They make Claude consistently good at a specific type of work, across sessions, across users — and across surfaces: a skill runs in chat, in Cowork, in Claude Code, and via the API. Skills follow an open standard (Agent Skills), so what you write isn't locked to one tool. The first version will be imperfect. That's fine — Exercise 3 is specifically about testing and refining."
 
 ### Quick Check
 
@@ -109,7 +109,7 @@ Walk through the "Turn into skill" flow conceptually:
 2. **Claude asks questions** — About your process, what makes output good, when you'd use this skill, what materials it needs. Answer naturally — Claude is extracting your expertise the same way Exercise 1 will do explicitly.
 3. **Claude builds the skill** — Generates a SKILL.md with proper YAML frontmatter, bundles any reference files or scripts, and packages it all.
 4. **Claude evaluates it** — Runs a validation before producing the downloadable file.
-5. **You activate it** — Save the file, then enable it in Settings > Capabilities > Skills.
+5. **You activate it** — Save the file, then enable it under Customize > Skills.
 
 "This is how most people will create their first skill. It works well for straightforward workflows. But when you need precise control — specific process stages, quality gates, behavioral constraints — you'll want to understand what's inside that file. That's Concept 4."
 

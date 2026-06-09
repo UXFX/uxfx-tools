@@ -42,8 +42,7 @@ Profile Preferences (account-wide defaults)
         ├── Project Instructions (standing brief)
         ├── CLAUDE.md (file-system configuration)
         ├── Project Knowledge (reference library, RAG-enabled)
-        ├── Styles (voice/tone control)
-        ├── Skills (reusable expertise)
+        ├── Skills (reusable expertise + voice/tone)
         ├── Skill Orchestration (state files, gates, orchestrator)
         ├── Plugins (bundled capabilities)
         ├── Connectors (external tool integrations)
@@ -101,7 +100,7 @@ Present the information placement framework:
 | Needs to persist approximately | Memory | Session 2 |
 
 Then the design principles:
-- **Design for the user who isn't you.** Projects support Members and Editors roles. Members use the Project. Editors modify it. When designing for teammates, match roles to responsibility.
+- **Design for the user who isn't you.** On Team and Enterprise plans, Projects can be shared with two permission levels: "Can use" (runs conversations in the Project) and "Can edit" (modifies instructions and knowledge). When designing for teammates, match permissions to responsibility. On Pro/Max there's no Project sharing — your sharing layer is files: CLAUDE.md, skills, and handoff files travel with a folder.
 - **Start with one workflow end-to-end.** Don't build everything at once. You've done this.
 - **Maintain your system.** Stale instructions and outdated skills degrade quality. Build maintenance into your workflow.
 
@@ -254,11 +253,11 @@ Guide the student through designing a complete system:
 
 ### Do
 
-**Step 1:** Give the student's workflow system to another person — not just the skill, but the whole thing: Project, directory, handoff file, skills, connected tools.
+**Step 1:** Give the student's workflow system to another person — not just the skill, but the whole thing: directory, handoff file, skills, CLAUDE.md, connected tools. On Team/Enterprise, also share the Project itself.
 
-**Step 2:** Add them as a Member first. Can they run a session and get useful output without asking questions?
+**Step 2:** Start them at use-level access — on Team/Enterprise, share the Project as "Can use"; on Pro/Max, hand them the folder and have them run it in their own Claude. Can they run a session and get useful output without asking questions?
 
-**Step 3:** Promote to Editor. Can they modify the skill or update project instructions without breaking anything?
+**Step 3:** Then edit-level: "Can edit" on Team/Enterprise, or on Pro/Max have them modify the skill or CLAUDE.md in the shared folder. Can they make a change without breaking anything?
 
 🛑 **CHECKPOINT** — "Where did they get confused? Those confusion points are design failures."
 
@@ -277,7 +276,7 @@ If they don't have someone available, simulate: have them walk through the syste
 1. Systems beat individual prompts. The goal is a production capability.
 2. Context engineering: right information at the right level of the stack.
 3. File system is your operating system. Design it deliberately.
-4. Design for the teammate who didn't build it. Members vs. Editors.
+4. Design for the teammate who didn't build it. Use-level access before edit-level access.
 5. Start with one workstream end-to-end. Don't boil the ocean.
 6. Maintain your system. Stale instructions degrade quality.
 7. The best systems feel invisible.

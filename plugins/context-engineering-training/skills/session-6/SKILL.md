@@ -34,7 +34,7 @@ The Big Idea: Session 5 taught what Claude can do on your computer. This session
 
 ### Frame
 
-Connectors integrate Claude with external services: Slack, Figma, Google Drive, GitHub, Linear, and more. Once connected, Claude can read from and write to these services directly. Access via Customize > Connectors.
+Connectors integrate Claude with external services: Slack, Figma, Google Drive, GitHub, Linear, and more. Once connected, Claude can read from and write to these services directly. Browse them under Customize — skills, connectors, and plugins now share one directory there, so it's one place to extend Claude regardless of what kind of extension you need.
 
 Under the hood, connectors use the Model Context Protocol (MCP) — an open standard for connecting AI to external tools. You don't need to understand MCP to use connectors, but knowing the term helps when troubleshooting. If you see "MCP server" in an error message or tutorial, it's referring to the same thing as a connector.
 
@@ -48,6 +48,8 @@ Browse available connectors and show what's possible. If their workflow touches 
 
 "Connectors give Claude reach beyond your local files. The MCP term is worth remembering — it'll show up in error messages and community guides. You'll connect one to your workflow in Exercise 1."
 
+One context-budgeting note that should feel familiar by now: connectors have tool-access modes. **Auto** loads a connector's tools so they're always ready; **On demand** loads them only when needed. With a handful of connectors, Auto is fine. Past roughly ten, switch the less-used ones to On demand — every always-loaded tool definition is context spent before you've typed a word. Same principle as Session 3, new surface.
+
 ### Quick Check
 
 "If your workflow for [their workflow] needs data from an external service, what's the difference between using a connector and just copy-pasting data into the conversation?"
@@ -60,7 +62,7 @@ Browse available connectors and show what's possible. If their workflow touches 
 
 ### Frame
 
-Plugins bundle skills, connectors, and tools into installable packages. Think of them as apps for Claude. Browse and install from the plugin ecosystem via Customize > Plugins.
+Plugins bundle skills, connectors, and tools into installable packages. Think of them as apps for Claude. Browse and install from the same unified directory under Customize where you found connectors.
 
 A meta-moment: "This training you're taking right now IS a plugin. It bundles teaching skills, a state management system, and a progress portal into an installable package. That's the pattern."
 
@@ -70,13 +72,13 @@ Browse available plugins with the student. Point out the range: document creatio
 
 ### Debrief
 
-"Evaluate before installing — not every plugin is worth the context cost. A plugin that loads heavy instructions into every conversation consumes tokens even when you're not using it. Install what you need, remove what you don't."
+"Evaluate before installing — not every plugin is worth the context cost. The mechanism matters here: skills load by progressive disclosure. Only each skill's name and description sit in the window up front; the full instructions load when a skill is actually invoked. So one plugin won't sink you — but every installed plugin adds its skills' descriptions to every conversation, and a shelf full of never-used plugins is paying that metadata tax for nothing. Install what you need, remove what you don't."
 
 ### Quick Check
 
 "You find a plugin that looks useful but you're not sure it's worth installing. What's the hidden cost of installing it, even if you don't use it in every session?"
 
-🛑 **CHECKPOINT** — Good answer identifies context cost: plugins load their instructions into the context window, consuming tokens even when inactive. That's less room for actual work. If they only mention disk space or clutter, redirect to the context window impact — it's a token budget issue, not a storage issue.
+🛑 **CHECKPOINT** — Good answer identifies context cost: every installed plugin's skill names and descriptions load into the context window, consuming tokens even when the plugin is never invoked (full instructions load only on invocation — progressive disclosure). That's less room for actual work. If they only mention disk space or clutter, redirect to the context window impact — it's a token budget issue, not a storage issue.
 
 ---
 
@@ -86,7 +88,7 @@ Browse available plugins with the student. Point out the range: document creatio
 
 In Session 4, you built handoff discipline to maintain continuity across sessions you run manually. Scheduled tasks are the next step: sessions that run themselves. Claude can check your email every morning, generate a daily briefing, update a tracker, or run any repeatable workflow on a schedule — hourly, daily, weekly, or on specific days.
 
-One practical constraint: the app needs to be open and the computer awake.
+One practical constraint: the app needs to be open and the computer awake. If a run gets skipped — laptop closed, app shut — it runs automatically when you're back, with a notification. So missed schedules catch up; they don't silently vanish.
 
 ### Show
 

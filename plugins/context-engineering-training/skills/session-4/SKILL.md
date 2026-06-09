@@ -37,7 +37,7 @@ The Big Idea: A single conversation is not the unit of work — a project is. Pr
 
 In Session 3, you built a Project that persists context across conversations. But conversations themselves are finite. Sessions end for three reasons, and recognizing which one is happening is the first skill:
 
-1. **Context exhaustion** — The window fills up and quality degrades. You felt this in Session 3's overload experiment.
+1. **Context exhaustion** — The window fills up, compaction starts summarizing your earlier context away, and quality degrades. The conversation doesn't stop — it just gets quietly vaguer. You felt this in Session 3's overload experiment.
 2. **Topic drift** — The conversation wanders and becomes unfocused. Claude starts mixing up different threads.
 3. **Natural breakpoint** — The task is done, or you've reached a logical stopping point.
 
@@ -46,7 +46,7 @@ In Session 3, you built a Project that persists context across conversations. Bu
 Point to this training itself as an example: "This plugin manages session boundaries for you — each session is a self-contained unit with a start and end. But when you're doing real work with your workflow, YOU have to recognize when a session should end. The training won't always be there to structure it."
 
 Describe what each failure mode looks like in practice:
-- Context exhaustion: "Claude starts giving generic responses, forgetting instructions you gave earlier, or repeating itself."
+- Context exhaustion: "Claude starts giving generic responses, forgetting instructions you gave earlier, or repeating itself. The tell: it remembers the gist of early context but loses the specifics — compaction kept the summary and dropped the precision. A handoff file beats compaction because you choose what survives."
 - Topic drift: "You started working on research but now you're also editing a document and planning next steps — the conversation has three threads and Claude is handling none of them well."
 - Natural breakpoint: "The deliverable is done. You've reached a decision. The research phase is complete and production is next."
 
@@ -303,7 +303,7 @@ Save the transition prompt to a file in the student's workspace. They'll test it
 
 **Step 1:** Start a session and keep working on multiple tasks without ending. Pile on: different topics, switching between tasks, asking Claude to recall earlier instructions.
 
-**Step 2:** Watch for the signs: generic responses, forgotten specifics, loss of coherence. Note when it happens and estimate how much context was loaded.
+**Step 2:** Watch for the signs: generic responses, forgotten specifics, loss of coherence. The session won't hit a hard wall — compaction keeps it running — so the test is precision: ask for an exact detail from early in the session and see what comes back. Note when degradation starts and estimate how much context was loaded.
 
 **Step 3:** When it breaks, stop. Don't push through. Write a quick handoff note of the current state and start a fresh conversation. Notice the quality difference.
 

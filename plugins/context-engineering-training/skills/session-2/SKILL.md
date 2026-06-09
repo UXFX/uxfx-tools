@@ -2,7 +2,7 @@
 name: session-2
 description: >
   Session 2: How Claude Actually Works. Teaches the context window, personalization stack,
-  memory, research, model selection, extended thinking, and conversation as unit of work.
+  memory, research, model selection, thinking modes, and conversation as unit of work.
   Four exercises including choosing the throughline workflow. Use when: STATE.md shows
   Session 2, or user says "session 2" or "how claude works".
 user-invocable: true
@@ -34,7 +34,7 @@ The Big Idea: Claude is a reasoning partner with a finite context window. Everyt
 
 ### Frame
 
-Set up the core mental model. Most people treat Claude like a search engine — type a question, get an answer. The real model: you're managing a context window. Everything Claude can "see" lives in that window: your messages, Claude's responses, files, project instructions, memory, tool outputs. There's a hard limit. When it fills up, earlier context drops out.
+Set up the core mental model. Most people treat Claude like a search engine — type a question, get an answer. The real model: you're managing a context window. Everything Claude can "see" lives in that window: your messages, Claude's responses, files, project instructions, memory, tool outputs. There's a hard limit. When the window approaches it, Claude compacts the conversation — older content gets summarized to make room. The conversation keeps going, but compaction is lossy: your early specifics survive only as a summary.
 
 This single concept — the context window as a finite resource — is the foundation of everything in the training. Every technique from here forward is a strategy for managing this constraint.
 
@@ -44,19 +44,19 @@ Demonstrate the context window in action. Do this conversationally:
 
 1. Point out what's currently loaded in this conversation: the plugin instructions, the student's state file, the agent persona, this skill file, and the conversation itself. All of that is context. All of it consumes tokens.
 
-2. Explain what would happen if you kept adding — loading more files, having a longer conversation, asking Claude to hold more information. Eventually, the earliest parts of the conversation would start getting pushed out.
+2. Explain what would happen if you kept adding — loading more files, having a longer conversation, asking Claude to hold more information. Eventually Claude would start compacting: summarizing the earliest parts to make room. No error, no warning — just the exact number you mentioned an hour ago quietly becoming "a figure was discussed."
 
 3. Make it concrete: "Right now, this training plugin is using context to teach you about context. The skill file I'm following, the instructor persona shaping how I talk to you, your state file tracking progress — all of that is in the window alongside our conversation. If we loaded a 50-page document on top of all that, something would have to give."
 
 ### Debrief
 
-Check: "Does the context window concept make sense? Think of it as Claude's working memory — everything has to fit, and what doesn't fit gets forgotten. The rest of this session teaches you what goes into that window and how to control it."
+Check: "Does the context window concept make sense? Think of it as Claude's working memory — everything has to fit, and when it stops fitting, older content gets compressed into summaries. Continuity survives; precision doesn't. The rest of this session teaches you what goes into that window and how to control it."
 
 ### Quick Check
 
 "Say you're working on [student's workflow] and you load a long reference document, detailed project instructions, AND start a complex conversation. What's the trade-off you're making?"
 
-🛑 **CHECKPOINT** — Wait for the student's answer. They should identify that loading more context leaves less room for the conversation itself, or that earlier context may get pushed out. If they frame it as a resource management problem, they've got it.
+🛑 **CHECKPOINT** — Wait for the student's answer. They should identify that loading more context leaves less room for the conversation itself, or that earlier content will get compacted into lossy summaries sooner. If they frame it as a resource management problem, they've got it.
 
 ---
 
@@ -74,7 +74,7 @@ Walk through the five layers, demonstrating each one:
 
 2. **Project instructions** — "Projects are persistent workspaces where context carries across conversations. You haven't created one yet — that's Session 3. When you do, the instructions you write will be loaded into every conversation in that Project. It's like onboarding a new team member once instead of re-explaining everything each time."
 
-3. **Styles** — "Claude has four preset styles — Normal, Concise, Formal, Explanatory — plus custom styles. These control how I deliver information, not what I know. Useful for maintaining consistent voice."
+3. **Skills** — "Packaged expertise you invoke when you need it — instructions for a specific kind of task that load on demand. If you've used Claude's old Styles feature for tone control, it lives here now: custom styles were migrated to skills you invoke by name, like `/concise-pirate-style`. Session 7 goes deep on skills. For now, know two things: the layer exists, and it's polite about context — only a skill's name and description sit in the window until you actually invoke it."
 
 4. **Memory** — "I have some memory of past conversations with you. It's useful for continuity — knowing your preferences, recurring context — but unreliable for precise facts. We'll test this in Exercise 3."
 
@@ -90,7 +90,7 @@ Key point to land: each layer takes up space in the context window. Loading all 
 
 "If you wanted Claude to always use a specific tone in every conversation — not just this one — which layer of the personalization stack would you put that in, and why?"
 
-🛑 **CHECKPOINT** — Wait for the student's answer. Profile preferences or styles are both valid — the key insight is that it should go in a persistent layer, not the conversation. If they say "project instructions," clarify that those are per-project, not account-wide.
+🛑 **CHECKPOINT** — Wait for the student's answer. Profile preferences is the right answer — the key insight is that it should go in a persistent, account-wide layer, not the conversation. If they say "project instructions," clarify that those are per-project, not account-wide. If they say "a skill," note that skills are invoked per-task — fine for an occasional voice, wrong for an always-on one.
 
 ---
 
@@ -216,9 +216,9 @@ Demonstrate with a real example connected to the student's workflow:
 
 ### Frame
 
-Claude comes in multiple models. The core tradeoff: reasoning depth versus speed. Stronger models (Opus) think harder — use for nuanced analysis, complex decisions, anything where getting it wrong is expensive. Faster models (Sonnet, Haiku) are better for straightforward tasks and high volume.
+Claude comes in multiple models. The core tradeoff: reasoning depth versus speed and usage cost. Stronger models (Opus, and as of mid-2026 a tier above it — Fable) think harder — use for nuanced analysis, complex decisions, anything where getting it wrong is expensive. Faster models (Sonnet, Haiku) are better for straightforward tasks and high volume. The strongest tiers also burn through your usage allocation faster — power isn't free.
 
-Model selection is a context engineering decision: you're choosing how much reasoning power to apply.
+Model selection is a context engineering decision: you're choosing how much reasoning power to apply. One durable habit: lineups change — names and tiers shift over time, but the tradeoff logic doesn't. When in doubt, check the current lineup in the model selector rather than assuming.
 
 ### Show
 
@@ -232,23 +232,23 @@ Describe the practical difference:
 
 ---
 
-## Concept 6: Extended Thinking
+## Concept 6: Thinking Modes — Adaptive and Extended
 
 ### Frame
 
-Extended thinking lets Claude work through complex problems before responding. It activates automatically for hard problems but can be encouraged. Think of it as asking Claude to think before speaking — useful for multi-step analysis, complex decisions, or anything where a human would need to think first.
+Claude can work through complex problems before responding — but how that happens depends on the model tier. Top-tier models (Opus and above) use **adaptive thinking**: always on, the model decides how hard to think based on the problem. No toggle, no special prompt needed. Mid-tier models (Sonnet, Haiku) expose an **extended thinking** toggle you switch on for harder work.
 
 ### Show
 
-Briefly explain how extended thinking pairs with model selection: "A stronger model with extended thinking is the highest-quality configuration. Reserve it for work that justifies the time."
+Make it practical: "On a top-tier model, you don't manage thinking at all — pick the model, brief it well, and it thinks as hard as the problem demands. On Sonnet or Haiku, the extended thinking toggle is a quality lever you control. Either way, thinking depth is no substitute for context: a model thinking hard about a poorly-briefed problem just produces a more elaborate wrong answer."
 
 ### Debrief
 
-"You now know the three quality levers: what context you provide (context engineering), which model you use (model selection), and whether Claude thinks before responding (extended thinking). Exercise 4 tests all three."
+"Your quality levers, in order of impact: what context you provide (always the biggest), which model you use, and — on mid-tier models — whether you toggle extended thinking. On top-tier models that third lever disappears: thinking is built in. Exercise 4 lets you feel the differences."
 
 ### Quick Check
 
-"In your workflow, which step would you throw the most reasoning power at — stronger model, extended thinking, the works — and which step would you deliberately use a faster model for?"
+"In your workflow, which step needs the most reasoning power — a top-tier model, or a mid-tier one with extended thinking toggled on — and which step would you deliberately run on a faster model?"
 
 🛑 **CHECKPOINT** — Wait for the student's answer. They should match high-judgment steps to stronger models and mechanical/repetitive steps to faster ones. If they say "strongest model for everything," push back on the speed trade-off.
 
@@ -284,7 +284,7 @@ Point to this session itself: "We've been having a conversation for a while now.
 
 **Step 2:** Run the prompt and show how the output reflects (or doesn't reflect) their profile preferences. Point to specific choices in the output: "I used this tone because your preferences say X." Or: "Notice I didn't adjust for your domain expertise — your preferences don't mention it."
 
-**Step 3:** Have them test with a Style applied (Concise, Formal, etc.) and see the difference.
+**Step 3:** Have them test the delivery layer: run the same prompt with an explicit tone/format instruction added (e.g., "answer in three tight sentences, no preamble") — or, if they have a migrated style skill, invoke it by name (`/{style-name}-style`). See the difference between what Claude knows and how it delivers.
 
 **Step 4:** Now have them go back to their profile preferences and refine based on what they've seen. Ask: "Are your preferences specific enough to change my behavior, or are they vague labels I'm ignoring?"
 
@@ -336,11 +336,11 @@ Point to this session itself: "We've been having a conversation for a while now.
 🛑 **CHECKPOINT** — Confirm which step.
 
 **Step 2:** Guide them through running that step three ways:
-a. With a faster model (Sonnet or Haiku)
-b. With a stronger model (Opus)
-c. With the stronger model and a prompt that encourages extended thinking ("Think through this step by step before responding")
+a. With a faster model (Sonnet or Haiku), extended thinking off
+b. With the same model, extended thinking toggled on
+c. With a top-tier model (Opus or above — no toggle needed; it thinks adaptively on its own)
 
-Have them compare reasoning depth across the three outputs.
+Have them compare reasoning depth across the three outputs: (a)→(b) shows what the thinking toggle buys on a mid-tier model; (b)→(c) shows what the model tier itself buys.
 
 **Step 3:** Now run a mechanical step from their workflow the same three ways. Notice where the difference stops mattering.
 
@@ -356,8 +356,8 @@ Have them compare reasoning depth across the three outputs.
 
 Present these as a summary, not a lecture:
 
-1. The context window is finite. Everything loaded into it has a cost.
-2. Five layers shape Claude's behavior: profile preferences, project instructions, styles, memory, conversation. Each consumes tokens.
+1. The context window is finite. Everything loaded into it has a cost — and when it overflows, compaction summarizes your specifics away.
+2. Five layers shape Claude's behavior: profile preferences, project instructions, skills, memory, conversation. Each consumes tokens.
 3. Claude's training data is frozen. Anything current needs research.
 4. Model selection matches reasoning power to task complexity.
 5. Memory is continuity, not storage. Use files for precision.
@@ -389,7 +389,7 @@ Invoke `portal` skill to regenerate the progress portal.
 
 ### Bridge to Session 3
 
-"Session 2 gave you the mental model. Session 3 teaches you to architect it — you'll build a real Project for your workflow with instructions, knowledge, and styles that make Claude consistently good at your specific work."
+"Session 2 gave you the mental model. Session 3 teaches you to architect it — you'll build a real Project for your workflow with instructions, knowledge, and voice/tone rules that make Claude consistently good at your specific work."
 
 **Clear next steps:**
 - If they want to continue now → "Ready to keep going?" → invoke `session-3`

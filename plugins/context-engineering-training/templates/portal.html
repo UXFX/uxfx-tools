@@ -980,18 +980,18 @@ const TRAINING_DATA = /* %%DATA_PLACEHOLDER%% */ {
     ],
     2: [
       { name: "Context window", desc: "Your finite resource. Everything loaded has a cost." },
-      { name: "Personalization stack", desc: "Five layers shape behavior: preferences, instructions, styles, memory, conversation." },
+      { name: "Personalization stack", desc: "Five layers shape behavior: preferences, instructions, skills, memory, conversation." },
       { name: "Memory", desc: "Useful for continuity, unreliable for precision. Use files for project state." },
       { name: "Research", desc: "Claude’s training data is frozen. Anything current needs research first." },
       { name: "Model selection", desc: "Match reasoning power to task complexity. Start default, switch up or down." },
-      { name: "Extended thinking", desc: "Encourages Claude to reason before responding. Pair with stronger models." },
+      { name: "Thinking modes", desc: "Top-tier models think adaptively on their own; Sonnet and Haiku expose an extended-thinking toggle." },
       { name: "Conversation as unit", desc: "Quality comes from the conversation, not the prompt." }
     ],
     3: [
       { name: "One Project per workstream", desc: "Don’t overload a single Project with everything." },
       { name: "Project instructions", desc: "Your standing brief. Set context once." },
       { name: "Project knowledge", desc: "Two approaches: UI uploads (stable) or file system (evolving)." },
-      { name: "Styles", desc: "Voice and tone control. Format, not substance." },
+      { name: "Voice & tone", desc: "Delivery rules live in instructions and skills. Format, not substance." },
       { name: "Context budgeting", desc: "Load only what this conversation needs. High-signal beats high-volume." }
     ],
     4: [
@@ -1054,12 +1054,12 @@ const TRAINING_DATA = /* %%DATA_PLACEHOLDER%% */ {
     },
     2: {
       bigIdea: "Session 1 gave you the mental models. Now meet the machine. Claude is a reasoning partner with a finite context window. Everything — output quality, session length, what Claude 'knows' about you — comes down to what's in that window and how well you manage it. This is context engineering.",
-      whatToRemember: "The context window is finite — everything loaded has a cost. Profile preferences, project instructions, styles, memory, and conversation are layers that shape output. Claude's training data is frozen — research first, then produce. Model selection is a context engineering decision. Memory is useful for continuity but unreliable for precision. The conversation — not the prompt — is where quality happens.",
+      whatToRemember: "The context window is finite — everything loaded has a cost, and overflow means lossy compaction. Profile preferences, project instructions, skills, memory, and conversation are layers that shape output. Claude's training data is frozen — research first, then produce. Model selection is a context engineering decision. Memory is useful for continuity but unreliable for precision. The conversation — not the prompt — is where quality happens.",
       exerciseDescriptions: {
         "Choose Your Workflow": "Pick the workflow you'll build across the entire training. Write a plain-language description, then compare a bare prompt vs. a context-rich prompt for one step.",
-        "The Personalization Stack in Action": "Test the same prompt in three contexts: bare conversation, inside a Project, and with a style applied. Then refine your profile preferences.",
+        "The Personalization Stack in Action": "Test the same prompt in three contexts: bare conversation, inside a Project, and with an explicit tone/format instruction applied. Then refine your profile preferences.",
         "Memory Observation": "Tell Claude specific things, end the session, test what it remembers in a new session vs. an incognito chat. Map the boundaries.",
-        "Model Selection & Extended Thinking": "Run your workflow's most complex step three ways: faster model, stronger model, stronger model + extended thinking. Compare reasoning depth."
+        "Model Selection & Extended Thinking": "Run your workflow's most complex step three ways: faster model with thinking off, same model with extended thinking on, top-tier model (adaptive thinking built in). Compare reasoning depth."
       }
     },
     3: {
@@ -1138,7 +1138,7 @@ const TRAINING_DATA = /* %%DATA_PLACEHOLDER%% */ {
     { name: "Project Instructions", session: 3, indent: 2, connector: "├──" },
     { name: "CLAUDE.md", session: 7, indent: 2, connector: "├──" },
     { name: "Project Knowledge", session: 3, indent: 2, connector: "├──" },
-    { name: "Styles", session: 3, indent: 2, connector: "├──" },
+    { name: "Voice & Tone (via instructions + skills)", session: 3, indent: 2, connector: "├──" },
     { name: "Skills", session: 7, indent: 2, connector: "├──" },
     { name: "Skill Orchestration", session: 8, indent: 2, connector: "├──" },
     { name: "Plugins", session: 8, indent: 2, connector: "├──" },

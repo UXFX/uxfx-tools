@@ -19,8 +19,8 @@ This is the map. Consult it at session transitions, when checking gates, or when
 |---------|-------|----------|-----------|------|
 | 0 | session-0 | Training overview, profile preferences, settings | Guided setup | None |
 | 1 | session-1 | Mental model shift, what AI is good/bad at, prompt anatomy, thinking vs execution | 2 (2 standalone) | None |
-| 2 | session-2 | Context window, personalization stack, memory, research, models, extended thinking | 4 (2 throughline, 2 standalone) | None |
-| 3 | session-3 | Projects, instructions, knowledge, styles, context budgeting | 4 (3 throughline, 1 standalone) | None |
+| 2 | session-2 | Context window, personalization stack, memory, research, models, thinking modes | 4 (2 throughline, 2 standalone) | None |
+| 3 | session-3 | Projects, instructions, knowledge, voice/tone, context budgeting | 4 (3 throughline, 1 standalone) | None |
 | 4 | session-4 | Session handoff, transition prompts, two-layer system, guardrails | 4 (3 throughline, 1 standalone) | None |
 
 ### Tier 2: Builder — "I work with Claude across sessions and tools"

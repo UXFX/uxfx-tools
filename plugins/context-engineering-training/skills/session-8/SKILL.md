@@ -165,7 +165,7 @@ Then point to the training's orchestrator: "This training has an orchestrator th
 
 In Session 6, you installed plugins others built. Now you can build your own. A plugin bundles skills, connectors, and tools into an installable package. The structure: a plugin manifest (plugin.json), skill folders, and associated resources.
 
-When your multi-skill workflow works reliably, packaging it as a plugin lets you distribute it — to teammates, your team, or the broader ecosystem.
+When your multi-skill workflow works reliably, packaging it as a plugin lets you distribute it — to teammates, your team, or the broader ecosystem. Distribution has real channels now: you can hand someone a plugin file directly, and on Team and Enterprise plans, organizations can run their own plugin marketplaces — an owner publishes the plugin and the whole org installs it from one place. If you build something your team should all run the same way, that's the destination.
 
 ### Show
 

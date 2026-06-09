@@ -2,7 +2,7 @@
 name: session-3
 description: >
   Session 3: Projects & Context Architecture. Teaches Projects, project instructions,
-  project knowledge (two approaches), styles, and context budgeting. Four exercises
+  project knowledge (two approaches), voice/tone control, and context budgeting. Four exercises
   including building the workflow's Project. Use when: STATE.md shows Session 3,
   or user says "session 3" or "projects".
 user-invocable: true
@@ -120,31 +120,33 @@ Help the student decide which approach fits their workflow:
 
 ---
 
-## Concept 4: Styles — Voice and Tone Control
+## Concept 4: Voice and Tone — Instructions, Not Switches
 
 ### Frame
 
-Styles control how Claude communicates — not what it knows, but how it delivers. Four presets (Normal, Concise, Formal, Explanatory) plus custom styles.
+How Claude sounds — tone, format, delivery — is controlled by the same layers you're already learning, not by a separate feature. Claude used to have a dedicated Styles feature (preset voices you'd switch between). It's been retired: custom styles were migrated into skills you invoke by name (`/{style-name}-style`), and the presets are gone. This is worth pausing on — it's a live demonstration of a principle this training keeps returning to: features come and go, but the layers persist. Tone control didn't disappear; it moved into instructions and skills.
+
+So the current answer to "how do I control voice?" is: put always-true delivery rules in your instructions (profile preferences for everywhere, project instructions for one workstream), and package occasional voices as skills you invoke when needed.
 
 ### Show
 
-Quick demonstration: take the student's workflow and describe how output would differ across styles.
+Quick demonstration: take one output from the student's workflow and describe how delivery would differ under different instruction lines.
 
-- Concise: "Bullet points, minimal explanation, just the deliverable."
-- Formal: "Full sentences, professional tone, suitable for external audiences."
-- Explanatory: "Detailed reasoning, step-by-step logic, good for learning."
+- "Bullet points, minimal explanation, just the deliverable" — for fast internal consumption.
+- "Full sentences, professional tone, suitable for external audiences" — for client-facing work.
+- "Detailed reasoning, step-by-step logic" — for documents someone learns from.
 
-If the student's workflow has an audience, connect the style choice to that audience.
+Point out: each of those is one line in project instructions. If the student's workflow has an audience, connect the delivery rule to that audience — and note it belongs in the Project instructions they'll write in Exercise 1.
 
 ### Debrief
 
-"Styles are a light touch — useful for consistent voice, but not where the real leverage is. Instructions and knowledge shape what Claude produces. Styles shape how it sounds."
+"Voice and tone are a light touch — useful for consistency, but not where the real leverage is. Instructions and knowledge shape what Claude produces; delivery rules shape how it sounds. And now you've seen what happens when a feature retires: nothing you build on principles is lost."
 
 ### Quick Check
 
-"If you had to rank the four things we've covered — Projects, instructions, knowledge, and styles — by impact on output quality, what's your top pick and why?"
+"If you had to rank the four things we've covered — Projects, instructions, knowledge, and voice/tone rules — by impact on output quality, what's your top pick and why?"
 
-🛑 **CHECKPOINT** — Instructions should be near the top. Styles should be at the bottom. The reasoning matters more than the exact ranking — they should understand that behavioral context (instructions) has more leverage than presentation context (styles).
+🛑 **CHECKPOINT** — Instructions should be near the top. Voice/tone rules should be at the bottom. The reasoning matters more than the exact ranking — they should understand that behavioral context (instructions) has more leverage than presentation context (delivery rules).
 
 ---
 
@@ -154,7 +156,7 @@ If the student's workflow has an audience, connect the style choice to that audi
 
 This is the synthesis concept for the session. Every element loaded into the context window costs tokens: project instructions, knowledge files, memory, conversation history. The window is finite. The discipline: load only what this specific conversation needs.
 
-Signs of overload: Claude forgetting earlier context, output becoming generic, responses losing specificity. When this happens, the window is full and earlier context is getting pushed out.
+Signs of overload: Claude forgetting earlier specifics, output becoming generic, responses losing specificity. When this happens, the window is full and earlier context is being compacted — summarized down to make room. The conversation keeps working; your precision quietly doesn't.
 
 The principle: **high-signal, low-volume.** Dense, relevant context beats sprawling, comprehensive context.
 
@@ -258,7 +260,7 @@ Update WORKFLOW.md: add to "What I've Built So Far" — Session 3: Designed work
 - Load multiple large files
 - Have a long, wandering conversation that covers many topics
 
-**Step 2:** At some point, ask Claude to recall something from early in the conversation or produce output that requires synthesizing multiple pieces of context. Notice when quality degrades — generic responses, forgotten specifics, loss of coherence.
+**Step 2:** At some point, ask Claude to recall something specific from early in the conversation — an exact number, name, or phrasing — or produce output that requires synthesizing multiple pieces of context. Notice when quality degrades: generic responses, forgotten specifics, loss of coherence. Note that the conversation won't hit a wall — compaction keeps it going — but specifics from early on come back vague or wrong. That's the lossy summary doing its quiet damage.
 
 **Step 3:** Start a fresh conversation with lean context — just the essentials. Run the same task. Feel the difference.
 
