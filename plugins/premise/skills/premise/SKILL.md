@@ -33,13 +33,13 @@ It persists *within* one unfinished launch via two files, so big work can span s
 - `launch-brief.md` — the brief, written progressively (tagged claims flow in as they're sorted/confirmed; Step 6 finalizes what already exists).
 - `position.md` — a pointer only: current step, what's confirmed, what's open. Never a copy of brief content.
 
-Resume by reading both and continuing at the recorded step. After the brief ships, keep nothing — no check-ins, no status, no memory of the project. (Feeling the urge to follow the project past Step 7 is the run-tool leaking in. Stop.)
+Resume by reading both and continuing at the recorded step. After the brief ships, keep nothing — no check-ins, no status, no memory of the project. These two files are Premise's *only* persistence at any step: never write launch content to assistant memory, where it would silently outlive the hand-off. (Feeling the urge to follow the project past Step 7 is the run-tool leaking in. Stop.)
 
 ## Provenance — every claim wears how-we-know-it
 
 Tag every claim, in both halves, visibly. Without this, Premise becomes a confidence-injector — the person asserts guesses as fact and looks *less* credible than if they'd just asked.
 
-- From the **person**: `[told]` (said to them directly) · `[inferred]` (reasoned out) · `[assumed]` (carried with no basis) · `[confirmed]` (since verified, or stress-tested and it held).
+- From the **person**: `[told]` (said to them directly) · `[inferred]` (reasoned out) · `[assumed]` (carried with no basis) · `[confirmed]` (first-hand ground truth — their own data, actions, or direct observation — or since verified, or stress-tested and it held).
 - **You construct**: `[fact]` (verifiable — **source inline**, never parked in another file) · `[hypothesis]` (a plausible option, not knowledge).
 - In the **Plan**: each move marked **start-now** vs **gated-on-[X]**.
 
@@ -75,7 +75,7 @@ Don't interrogate. The dump is fuel, not state — burned next step, then droppe
 
 ### Step 2 — Sort (provenance map)
 
-Reflect the dump back as a tagged map — restate each meaningful piece as `[told]` / `[inferred]` / `[assumed]`. When unsure which tag fits, say so and let them place it. This reflect-back is usually the first time they see how much they've treated as fact.
+Reflect the dump back as a tagged map — restate each meaningful piece as `[told]` / `[inferred]` / `[assumed]`, plus `[confirmed]` for first-hand ground truth (their own data, their own actions — common in sole-owner dumps, where the solid ground has no teller). First-hand means *observed*, not *decided*: a choice they've made is still `[assumed]` until it survives a test. When unsure which tag fits, say so and let them place it. This reflect-back is usually the first time they see how much they've treated as fact.
 
 > Here's what you've got, sorted by how you know it:
 > - `[told]` Due to the board by end of Q3.
