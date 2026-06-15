@@ -19,7 +19,7 @@ Source of truth for what is published in this marketplace and where each plugin 
 |--------|-----------------|-----------|------|-------|
 | premise | v1.1.0 | **v1.1.0** | ✅ PASS (2026-06-07) | run-3 patches: 4 SKILL.md ambiguity fixes |
 | foundry | — | → moved to `uxfx-pro` | ✅ PASS (2026-05-31) | split out to private marketplace 2026-05-31; tracked in `uxfx-pro/STATE.md` |
-| context-engineering-training | v0.2.0 | **v0.2.0** | ✅ PASS (2026-06-07) | June 2026 capability alignment |
+| context-engineering-training | v0.4.0 | **v0.4.0** | ✅ PASS (2026-06-15) | two-dials teaching unit: reliability vs judgment stops (S5 seed + S9 principle) |
 
 ## Notes
 
@@ -35,3 +35,5 @@ Source of truth for what is published in this marketplace and where each plugin 
 - 2026-05-31 — Split: foundry moved to private marketplace `uxfx-pro`. `uxfx-tools` is now PUBLIC, holding premise + context-engineering-training only.
 - 2026-06-07 — Added `GETTING-STARTED.md` (repo root): end-user onboarding — Claude Desktop install (macOS/Windows), add marketplace, install plugins, first-run walkthroughs, updating to new versions. Steps verified against support.claude.com articles 10065433 and 13837440, then corrected against the live Desktop UI (owner screenshots). Denylist scan clean.
 - 2026-06-07 — Hygiene: reworded a 2026-05-31 changelog line that named an internal codename (denylist term in public repo); refreshed stale pipeline-table versions; gitignored `.gate-cache`.
+- 2026-06-09 — context-engineering-training v0.3.0 promoted (capability-currency release: styles retirement, thinking modes, compaction). Gate all-PASS — see GATE.md. (Backfilled 2026-06-15; the pipeline table had lagged at v0.2.0.)
+- 2026-06-15 — context-engineering-training v0.4.0 promoted. New teaching unit: autonomy as two dials (reliability + judgment) — S5 Approval Modes seed + S9 design principle "Decide where you stay in the loop." Gate all-PASS; denylist 0 hits in `plugin/` + 0 across full uxfx-tools history. Marketplace manifest bumped 1.1.0→1.2.0 (cache refresh).

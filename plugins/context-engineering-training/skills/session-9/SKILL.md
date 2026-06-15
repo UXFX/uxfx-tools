@@ -103,6 +103,7 @@ Then the design principles:
 - **Design for the user who isn't you.** On Team and Enterprise plans, Projects can be shared with two permission levels: "Can use" (runs conversations in the Project) and "Can edit" (modifies instructions and knowledge). When designing for teammates, match permissions to responsibility. On Pro/Max there's no Project sharing — your sharing layer is files: CLAUDE.md, skills, and handoff files travel with a folder.
 - **Start with one workflow end-to-end.** Don't build everything at once. You've done this.
 - **Maintain your system.** Stale instructions and outdated skills degrade quality. Build maintenance into your workflow.
+- **Decide where you stay in the loop.** Session 5's trust dial measures reliability — *can this run without me watching?* It can't answer a second question: *is this a step where my judgment has to stay even if the system never fails?* A reliability stop is temporary — you remove it once the system proves itself. A judgment stop is permanent by design — you keep it not because the system is weak, but because that's where your understanding lives. A loop that runs smoothly while your understanding rots is the expensive kind of fast. When you design a system, mark which stops are which — and don't let the reliable ones talk you into automating away the ones that keep you sharp.
 
 ### Debrief
 
@@ -280,6 +281,7 @@ If they don't have someone available, simulate: have them walk through the syste
 5. Start with one workstream end-to-end. Don't boil the ocean.
 6. Maintain your system. Stale instructions degrade quality.
 7. The best systems feel invisible.
+8. Two dials, not one. Reliability decides what runs unwatched; judgment decides where you stay regardless. Keep your hand on the judgment stops.
 
 ### Append to Learning Journal
 

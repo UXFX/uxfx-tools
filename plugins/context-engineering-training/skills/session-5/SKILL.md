@@ -79,7 +79,9 @@ In Session 3, every file operation required you to be in the conversation. Cowor
 
 ### Debrief
 
-"Start with 'Ask before acting.' Switch to 'Act without asking' once a workflow is proven reliable. The approval mode is a trust dial — turn it up gradually."
+"Start with 'Ask before acting.' Switch to 'Act without asking' once a workflow is proven reliable. The approval mode is a trust dial — turn it up gradually.
+
+But notice what that dial measures: reliability — *can the system run without me watching?* There's a second kind of stop it doesn't cover: the step you keep your hand on even when the system is flawless, because it's where your judgment has to stay. Those don't get turned up. We'll name this properly in Session 9 — for now, just plant the flag: not every stop is a trust problem waiting to be solved."
 
 ### Quick Check
 
