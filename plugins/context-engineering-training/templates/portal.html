@@ -927,7 +927,7 @@ const TRAINING_DATA = /* %%DATA_PLACEHOLDER%% */ {
       { name: "Choose Your Workflow", type: "throughline", status: "not-done" },
       { name: "The Personalization Stack in Action", type: "standalone", status: "not-done" },
       { name: "Memory Observation", type: "standalone", status: "not-done" },
-      { name: "Model Selection & Extended Thinking", type: "throughline", status: "not-done" }
+      { name: "Model Selection & Thinking Modes", type: "throughline", status: "not-done" }
     ],
     3: [
       { name: "Design Your Workflow's Project", type: "throughline", status: "not-done" },
@@ -984,7 +984,7 @@ const TRAINING_DATA = /* %%DATA_PLACEHOLDER%% */ {
       { name: "Memory", desc: "Useful for continuity, unreliable for precision. Use files for project state." },
       { name: "Research", desc: "Claude’s training data is frozen. Anything current needs research first." },
       { name: "Model selection", desc: "Match reasoning power to task complexity. Start default, switch up or down." },
-      { name: "Thinking modes", desc: "Top-tier models think adaptively on their own; Sonnet and Haiku expose an extended-thinking toggle." },
+      { name: "Thinking modes", desc: "Newer models (Opus, Sonnet 5) think adaptively — you set an effort level, not a toggle; older models like Haiku still have a manual extended-thinking toggle. Check the model menu, don’t assume by tier." },
       { name: "Conversation as unit", desc: "Quality comes from the conversation, not the prompt." }
     ],
     3: [
@@ -1059,7 +1059,7 @@ const TRAINING_DATA = /* %%DATA_PLACEHOLDER%% */ {
         "Choose Your Workflow": "Pick the workflow you'll build across the entire training. Write a plain-language description, then compare a bare prompt vs. a context-rich prompt for one step.",
         "The Personalization Stack in Action": "Test the same prompt in three contexts: bare conversation, inside a Project, and with an explicit tone/format instruction applied. Then refine your profile preferences.",
         "Memory Observation": "Tell Claude specific things, end the session, test what it remembers in a new session vs. an incognito chat. Map the boundaries.",
-        "Model Selection & Extended Thinking": "Run your workflow's most complex step three ways: faster model with thinking off, same model with extended thinking on, top-tier model (adaptive thinking built in). Compare reasoning depth."
+        "Model Selection & Thinking Modes": "Check what thinking control your model gives you (an effort dial on newer models, an extended-thinking toggle on older ones), then run your workflow's most complex step with thinking turned up vs. down and compare against a top-tier model that thinks adaptively. Compare reasoning depth."
       }
     },
     3: {

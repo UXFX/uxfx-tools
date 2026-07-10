@@ -236,21 +236,23 @@ Describe the practical difference:
 
 ### Frame
 
-Claude can work through complex problems before responding — but how that happens depends on the model tier. Top-tier models (Opus and above) use **adaptive thinking**: always on, the model decides how hard to think based on the problem. No toggle, no special prompt needed. Mid-tier models (Sonnet, Haiku) expose an **extended thinking** toggle you switch on for harder work.
+Claude can work through a problem before it answers — but *how you control that* depends on the model's generation, not its tier. Newer-generation models — the current Opus and Sonnet 5 — use **adaptive thinking**: it's on by default, and the model decides how hard to think about each request. There's no on/off switch to manage. What you get instead is an **effort** setting — a dial for how thorough to be — in the model menu next to the send button. Older-generation models, like Haiku 4.5, still work the old way: a manual **extended thinking** toggle you switch on for harder work.
+
+The trap to avoid: this used to line up with tier — "top-tier thinks on its own, mid-tier has a toggle" — and it no longer does. Sonnet 5 is a mid-tier model, but it thinks adaptively with no toggle. So don't reason from the tier. Open the model menu (or check the model's card) and see which control this model actually gives you: an effort dial, or an extended-thinking toggle.
 
 ### Show
 
-Make it practical: "On a top-tier model, you don't manage thinking at all — pick the model, brief it well, and it thinks as hard as the problem demands. On Sonnet or Haiku, the extended thinking toggle is a quality lever you control. Either way, thinking depth is no substitute for context: a model thinking hard about a poorly-briefed problem just produces a more elaborate wrong answer."
+Make it practical: "On a newer model, you don't decide *whether* Claude thinks hard — it does that on its own. Your lever is effort: turn it up for a thorny judgment call, down for something routine. On an older model like Haiku, the extended-thinking toggle is the lever — you flip it on for the hard stuff. Either way, thinking depth is no substitute for context: a model thinking hard about a poorly-briefed problem just produces a more elaborate wrong answer."
 
 ### Debrief
 
-"Your quality levers, in order of impact: what context you provide (always the biggest), which model you use, and — on mid-tier models — whether you toggle extended thinking. On top-tier models that third lever disappears: thinking is built in. Exercise 4 lets you feel the differences."
+"Your quality levers, in order of impact: what context you provide (always the biggest), which model you use, and how much you let it think — an effort dial on newer models, an extended-thinking toggle on older ones. The controls change from model to model; the habit doesn't: check the model menu for what *this* model gives you rather than assuming by tier. Exercise 4 lets you feel the differences."
 
 ### Quick Check
 
-"In your workflow, which step needs the most reasoning power — a top-tier model, or a mid-tier one with extended thinking toggled on — and which step would you deliberately run on a faster model?"
+"In your workflow, which step needs the most reasoning power — and how would you turn thinking up on it: an effort dial or an extended-thinking toggle, depending on the model? Which step would you deliberately run cheap and fast?"
 
-🛑 **CHECKPOINT** — Wait for the student's answer. They should match high-judgment steps to stronger models and mechanical/repetitive steps to faster ones. If they say "strongest model for everything," push back on the speed trade-off.
+🛑 **CHECKPOINT** — Wait for the student's answer. They should match high-judgment steps to more thinking (higher effort, or extended thinking on) and mechanical/repetitive steps to a faster, cheaper setting. If they say "max thinking on the strongest model for everything," push back on the speed and cost trade-off. If they assume a toggle exists everywhere, remind them the newest models use an effort dial instead — check the model menu.
 
 ---
 
@@ -323,7 +325,7 @@ Point to this session itself: "We've been having a conversation for a while now.
 
 ---
 
-## Exercise 4: Model Selection & Extended Thinking (Throughline)
+## Exercise 4: Model Selection & Thinking Modes (Throughline)
 
 ### Frame
 
@@ -335,14 +337,18 @@ Point to this session itself: "We've been having a conversation for a while now.
 
 🛑 **CHECKPOINT** — Confirm which step.
 
-**Step 2:** Guide them through running that step three ways:
-a. With a faster model (Sonnet or Haiku), extended thinking off
-b. With the same model, extended thinking toggled on
-c. With a top-tier model (Opus or above — no toggle needed; it thinks adaptively on its own)
+**Step 2:** Before running anything, have them open the model menu next to the send button and look at the current model's controls — does it offer an **effort** dial (newer models) or an **extended thinking** toggle (older ones)? Making them look first *is* the lesson: the control depends on the model, so you check rather than assume.
 
-Have them compare reasoning depth across the three outputs: (a)→(b) shows what the thinking toggle buys on a mid-tier model; (b)→(c) shows what the model tier itself buys.
+🛑 **CHECKPOINT** — Confirm what they found.
 
-**Step 3:** Now run a mechanical step from their workflow the same three ways. Notice where the difference stops mattering.
+**Step 3:** Now run that complex step and feel what thinking buys, using whichever control the model gave them:
+- If it has an **effort** dial: run the step once at low effort, then again at high (or max). Compare reasoning depth.
+- If it has an **extended thinking** toggle: run it once with thinking off, then again with it on. Compare.
+- Then run it once on a top-tier model (e.g. the current Opus), which thinks adaptively on its own, and compare that to the best of the runs above — this isolates what the stronger model itself buys, on top of how hard it thinks.
+
+(If the student's model shows neither control, that's the point landing — they're on an adaptive model sitting at its default effort. Just raise the effort for the harder run.)
+
+**Step 4:** Now run a mechanical step from their workflow the same way. Notice where the extra thinking stops making any difference.
 
 ### Debrief
 

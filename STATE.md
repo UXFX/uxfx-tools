@@ -19,7 +19,7 @@ Source of truth for what is published in this marketplace and where each plugin 
 |--------|-----------------|-----------|------|-------|
 | premise | v1.1.0 | **v1.1.0** | ✅ PASS (2026-06-07) | run-3 patches: 4 SKILL.md ambiguity fixes |
 | foundry | — | → moved to `uxfx-pro` | ✅ PASS (2026-05-31) | split out to private marketplace 2026-05-31; tracked in `uxfx-pro/STATE.md` |
-| context-engineering-training | v0.4.0 | **v0.4.0** | ✅ PASS (2026-06-15) | two-dials teaching unit: reliability vs judgment stops (S5 seed + S9 principle) |
+| context-engineering-training | v0.5.0 | **v0.5.0** | ✅ PASS (2026-07-10) | Sonnet-5 thinking-mode accuracy fix: S2 generation-based framing + Exercise 4 unblocked |
 
 ## Notes
 
@@ -37,3 +37,4 @@ Source of truth for what is published in this marketplace and where each plugin 
 - 2026-06-07 — Hygiene: reworded a 2026-05-31 changelog line that named an internal codename (denylist term in public repo); refreshed stale pipeline-table versions; gitignored `.gate-cache`.
 - 2026-06-09 — context-engineering-training v0.3.0 promoted (capability-currency release: styles retirement, thinking modes, compaction). Gate all-PASS — see GATE.md. (Backfilled 2026-06-15; the pipeline table had lagged at v0.2.0.)
 - 2026-06-15 — context-engineering-training v0.4.0 promoted. New teaching unit: autonomy as two dials (reliability + judgment) — S5 Approval Modes seed + S9 design principle "Decide where you stay in the loop." Gate all-PASS; denylist 0 hits in `plugin/` + 0 across full uxfx-tools history. Marketplace manifest bumped 1.1.0→1.2.0 (cache refresh).
+- 2026-07-10 — context-engineering-training v0.5.0 promoted. Teaching-accuracy fix: Claude Sonnet 5 (launched 2026-06-30) made adaptive thinking the default and removed the extended-thinking toggle, breaking S2's tier-based rule (Sonnet 5 is mid-tier but has no toggle). S2 Concept 6 + Exercise 4 rewritten generation-based (newer models = effort control; older like Haiku 4.5 = manual toggle); portal synced (3 spots, incl. the S2 quick-ref chip beyond the report's list). Gate all-PASS; denylist 0 hits in `plugin/` + 0 across full uxfx-tools history. Marketplace manifest bumped 1.2.0→1.3.0 (cache refresh).
